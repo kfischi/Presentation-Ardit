@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multibrawn - שבת חתן מושלמת</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .lace-background {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-20 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm10-20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm0 40c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z' fill='%23d946ef' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fuchsia-brand { color: #d946ef; }
+        .bg-fuchsia { background-color: #d946ef; }
+        .silver-border { border-color: #cbd5e1; }
+        
+        .corner-lace {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px dashed #cbd5e1;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body class="lace-background p-4 md:p-10">
+    <div class="relative w-full max-w-xl bg-white rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border-[12px] border-slate-50 flex flex-col min-h-[620px]">
+        
+        <div class="corner-lace -top-10 -right-10"></div>
+        <div class="corner-lace -bottom-10 -left-10"></div>
+
+        <div class="h-12 bg-white flex items-center justify-center border-b border-slate-50 relative z-10">
+            <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-fuchsia opacity-20"></div>
+                <div class="w-3 h-3 rounded-full bg-slate-300 opacity-20"></div>
+                <div class="w-3 h-3 rounded-full bg-fuchsia opacity-20"></div>
+            </div>
+        </div>
+
+        <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative z-10">
+            
+            <!-- Slide 1: Cover -->
+            <div id="slide-0" class="slide active items-center text-center space-y-8">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-fuchsia-100 rounded-full scale-150 opacity-20 animate-pulse"></div>
+                    <div class="relative p-6 border-4 silver-border rounded-full inline-block bg-white shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 fuchsia-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h1 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">מקצוענות<br>שווה כסף</h1>
+                    <p class="text-2xl fuchsia-brand font-light italic tracking-tight">המדריך האסטרטגי לשבת חתן</p>
+                </div>
+                <div class="h-1 w-32 bg-fuchsia mx-auto rounded-full"></div>
+                <div class="text-slate-400 font-bold tracking-[0.4em] text-xs uppercase">Multibrawn | ערדית בראון</div>
+            </div>
+
+            <!-- Slide 2: The Contract -->
+            <div id="slide-1" class="slide space-y-6">
+                <h2 class="text-3xl font-black text-slate-900 border-r-8 border-fuchsia-500 pr-4 leading-tight">מוקשים בחוזה:<br><span class="fuchsia-brand text-2xl">איפה הכסף בורח?</span></h2>
+                <div class="space-y-4">
+                    <div class="group p-5 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-md transition-all">
+                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">
+                             ⚡ חשמל גלובלי
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">בלי "לפי מונה"! שבת של 25 שעות עם מזגנים היא בור תקציבי. סגרו מחיר הכל-כלול מראש.</p>
+                    </div>
+                    <div class="group p-5 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-md transition-all">
+                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">
+                             🧹 מי מנקה?
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">הגדירו בחוזה מי מנקה רצפה ושירותים בשבת. אל תניחו שהמקום עושה זאת כברירת מחדל.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: 14:00 -->
+            <div id="slide-2" class="slide items-center text-center space-y-10">
+                <h2 class="text-3xl font-bold text-slate-900">חוק ה-14:00</h2>
+                <div class="relative w-full max-w-sm">
+                    <!-- תוקן: fuchsia-bg → bg-fuchsia -->
+                    <div class="absolute inset-0 bg-fuchsia opacity-10 blur-3xl rounded-full"></div>
+                    <div class="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl transform rotate-2 relative">
+                        <p class="text-7xl font-black mb-2 tracking-tighter italic">14:00</p>
+                        <p class="text-xl font-bold fuchsia-brand uppercase tracking-widest">בחדרים!</p>
+                    </div>
+                </div>
+                <p class="text-slate-500 font-medium px-6 leading-relaxed italic">
+                    בשבתות חורף קצרות, הגעה מאוחרת היא האויב של השמחה. סיימו את המירוץ מוקדם.
+                </p>
+            </div>
+
+            <!-- Slide 4: Little Details -->
+            <div id="slide-3" class="slide space-y-8">
+                <h2 class="text-3xl font-black text-slate-900 border-r-8 border-fuchsia-500 pr-4 leading-tight">הפרטים הקטנים<br><span class="fuchsia-brand text-2xl">שסוגרים אירוע</span></h2>
+                <div class="grid grid-cols-1 gap-5">
+                    <div class="flex items-center gap-5 p-6 border-2 silver-border rounded-[2.5rem] bg-white shadow-sm">
+                        <span class="text-4xl bg-slate-50 p-3 rounded-full">🛍️</span>
+                        <div>
+                            <h4 class="font-bold fuchsia-brand text-lg">שקיות ניילון</h4>
+                            <p class="text-slate-500 text-xs mt-1">לאריזת שאריות ופינוי מהיר. אל תשכחו לוודא שיש במקום.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-5 p-6 border-2 silver-border rounded-[2.5rem] bg-white shadow-sm">
+                        <span class="text-4xl bg-slate-50 p-3 rounded-full">🎲</span>
+                        <div>
+                            <h4 class="font-bold fuchsia-brand text-lg">משחקים וחיבורים</h4>
+                            <p class="text-slate-500 text-xs mt-1">פינת משחקי קופסה בלובי וטריוויה משפחתית סביב השולחן.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: CTA -->
+            <div id="slide-4" class="slide items-center text-center space-y-12">
+                <div class="space-y-4">
+                    <h2 class="text-4xl font-black text-slate-900 leading-tight tracking-tighter">המדריך נתן כלים,<br>אני אתן לך שקט.</h2>
+                    <p class="text-slate-400 font-medium italic">"בואי נהפוך את השבת שלך לסיפור הצלחה בסטנדרט מולטי בראון."</p>
+                </div>
+                
+                <div class="w-full space-y-4">
+                    <div class="p-6 bg-white border-2 border-fuchsia-500 rounded-[2rem] shadow-xl hover:translate-y-[-5px] transition-all duration-300">
+                        <h4 class="font-bold fuchsia-brand text-xl">בנק הלוקיישנים הסודי</h4>
+                    </div>
+                    <div class="p-6 bg-white border-2 border-slate-100 rounded-[2rem] hover:border-fuchsia-200 transition-all duration-300">
+                        <h4 class="font-bold text-slate-800 text-xl">בדיקת חוזה VIP</h4>
+                    </div>
+                </div>
+                <button class="bg-fuchsia w-full py-6 rounded-full text-white font-black text-2xl shadow-[0_15px_30px_rgba(217,70,239,0.3)] hover:bg-fuchsia-700 active:scale-95 transition-all">
+                    בואי נתחיל לעבוד
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="bg-slate-50 p-8 flex items-center justify-between border-t border-slate-100 mt-auto relative z-20">
+            <button onclick="prevSlide()" class="text-slate-400 hover:text-fuchsia-600 transition-colors p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            
+            <div class="flex gap-3" id="nav-dots"></div>
+
+            <button onclick="nextSlide()" class="text-slate-900 hover:text-fuchsia-600 transition-colors p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentIdx = 0;
+        const total = 5;
+
+        function updateUI() {
+            document.querySelectorAll('.slide').forEach((s, i) => {
+                s.classList.toggle('active', i === currentIdx);
+            });
+            const dots = document.getElementById('nav-dots');
+            dots.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const d = document.createElement('div');
+                // תוקן: נוספו backticks לתבנית המחרוזת
+                d.className = `h-3 rounded-full transition-all duration-500 ${i === currentIdx ? 'w-12 bg-fuchsia' : 'w-3 bg-slate-200'}`;
+                dots.appendChild(d);
+            }
+        }
+
+        function nextSlide() {
+            if (currentIdx < total - 1) {
+                currentIdx++;
+                updateUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                updateUI();
+            }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
