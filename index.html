@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multibrawn - שבת חתן מושלמת</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -16,35 +16,17 @@
             justify-content: center;
             min-height: 100vh;
         }
-        
         .lace-background {
             background-color: #ffffff;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-20 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm10-20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm0 40c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z' fill='%23d946ef' fill-opacity='0.03'/%3E%3C/svg%3E");
         }
-        .slide {
-            display: none;
-            flex-direction: column;
-            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .slide.active {
-            display: flex;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .slide { display: none; flex-direction: column; animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .slide.active { display: flex; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .fuchsia-brand { color: #d946ef; }
         .bg-fuchsia { background-color: #d946ef; }
         .silver-border { border-color: #cbd5e1; }
-        
-        .corner-lace {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 2px dashed #cbd5e1;
-            opacity: 0.2;
-        }
+        .corner-lace { position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 2px dashed #cbd5e1; opacity: 0.2; }
     </style>
 </head>
 <body class="lace-background p-4 md:p-10">
@@ -86,15 +68,11 @@
                 <h2 class="text-3xl font-black text-slate-900 border-r-8 border-fuchsia-500 pr-4 leading-tight">מוקשים בחוזה:<br><span class="fuchsia-brand text-2xl">איפה הכסף בורח?</span></h2>
                 <div class="space-y-4">
                     <div class="group p-5 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-md transition-all">
-                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">
-                             ⚡ חשמל גלובלי
-                        </h3>
+                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">⚡ חשמל גלובלי</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">בלי "לפי מונה"! שבת של 25 שעות עם מזגנים היא בור תקציבי. סגרו מחיר הכל-כלול מראש.</p>
                     </div>
                     <div class="group p-5 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-md transition-all">
-                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">
-                             🧹 מי מנקה?
-                        </h3>
+                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">🧹 מי מנקה?</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">הגדירו בחוזה מי מנקה רצפה ושירותים בשבת. אל תניחו שהמקום עושה זאת כברירת מחדל.</p>
                     </div>
                 </div>
@@ -104,16 +82,13 @@
             <div id="slide-2" class="slide items-center text-center space-y-10">
                 <h2 class="text-3xl font-bold text-slate-900">חוק ה-14:00</h2>
                 <div class="relative w-full max-w-sm">
-                    <!-- תוקן: fuchsia-bg → bg-fuchsia -->
                     <div class="absolute inset-0 bg-fuchsia opacity-10 blur-3xl rounded-full"></div>
                     <div class="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl transform rotate-2 relative">
                         <p class="text-7xl font-black mb-2 tracking-tighter italic">14:00</p>
                         <p class="text-xl font-bold fuchsia-brand uppercase tracking-widest">בחדרים!</p>
                     </div>
                 </div>
-                <p class="text-slate-500 font-medium px-6 leading-relaxed italic">
-                    בשבתות חורף קצרות, הגעה מאוחרת היא האויב של השמחה. סיימו את המירוץ מוקדם.
-                </p>
+                <p class="text-slate-500 font-medium px-6 leading-relaxed italic">בשבתות חורף קצרות, הגעה מאוחרת היא האויב של השמחה. סיימו את המירוץ מוקדם.</p>
             </div>
 
             <!-- Slide 4: Little Details -->
@@ -137,13 +112,12 @@
                 </div>
             </div>
 
-            <!-- Slide 5: CTA -->
+            <!-- Slide 5: CTA → links to guide.html -->
             <div id="slide-4" class="slide items-center text-center space-y-12">
                 <div class="space-y-4">
                     <h2 class="text-4xl font-black text-slate-900 leading-tight tracking-tighter">המדריך נתן כלים,<br>אני אתן לך שקט.</h2>
                     <p class="text-slate-400 font-medium italic">"בואי נהפוך את השבת שלך לסיפור הצלחה בסטנדרט מולטי בראון."</p>
                 </div>
-                
                 <div class="w-full space-y-4">
                     <div class="p-6 bg-white border-2 border-fuchsia-500 rounded-[2rem] shadow-xl hover:translate-y-[-5px] transition-all duration-300">
                         <h4 class="font-bold fuchsia-brand text-xl">בנק הלוקיישנים הסודי</h4>
@@ -152,9 +126,10 @@
                         <h4 class="font-bold text-slate-800 text-xl">בדיקת חוזה VIP</h4>
                     </div>
                 </div>
-                <button class="bg-fuchsia w-full py-6 rounded-full text-white font-black text-2xl shadow-[0_15px_30px_rgba(217,70,239,0.3)] hover:bg-fuchsia-700 active:scale-95 transition-all">
+                <!-- כפתור מעבר למדריך 25 השלבים -->
+                <a href="guide.html" class="bg-fuchsia block w-full py-6 rounded-full text-white font-black text-2xl text-center shadow-[0_15px_30px_rgba(217,70,239,0.3)] hover:opacity-90 active:scale-95 transition-all" style="background-color:#d946ef; text-decoration:none;">
                     בואי נתחיל לעבוד
-                </button>
+                </a>
             </div>
         </div>
 
@@ -163,9 +138,7 @@
             <button onclick="prevSlide()" class="text-slate-400 hover:text-fuchsia-600 transition-colors p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
             </button>
-            
             <div class="flex gap-3" id="nav-dots"></div>
-
             <button onclick="nextSlide()" class="text-slate-900 hover:text-fuchsia-600 transition-colors p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
             </button>
@@ -175,7 +148,6 @@
     <script>
         let currentIdx = 0;
         const total = 5;
-
         function updateUI() {
             document.querySelectorAll('.slide').forEach((s, i) => {
                 s.classList.toggle('active', i === currentIdx);
@@ -184,26 +156,12 @@
             dots.innerHTML = '';
             for (let i = 0; i < total; i++) {
                 const d = document.createElement('div');
-                // תוקן: נוספו backticks לתבנית המחרוזת
                 d.className = `h-3 rounded-full transition-all duration-500 ${i === currentIdx ? 'w-12 bg-fuchsia' : 'w-3 bg-slate-200'}`;
                 dots.appendChild(d);
             }
         }
-
-        function nextSlide() {
-            if (currentIdx < total - 1) {
-                currentIdx++;
-                updateUI();
-            }
-        }
-
-        function prevSlide() {
-            if (currentIdx > 0) {
-                currentIdx--;
-                updateUI();
-            }
-        }
-
+        function nextSlide() { if (currentIdx < total - 1) { currentIdx++; updateUI(); } }
+        function prevSlide() { if (currentIdx > 0) { currentIdx--; updateUI(); } }
         updateUI();
     </script>
 </body>
