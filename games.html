@@ -3,6 +3,666 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Multi Brawn | משחקי החיבור</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700;900&family=Heebo:wght@300;400;500;700;800;900&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --fuchsia: #c2185b; --purple: #7b2d8b; --purple2: #9c3fb5;
+      --gold: #d4a853; --cream: #fdf6ee; --text: #2d1a3e; --muted: #7a6880;
+    }
+    body {
+      font-family: 'Heebo', sans-serif; direction: rtl;
+      background: var(--cream); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(194,24,91,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 0% 100%, rgba(123,45,139,0.07) 0%, transparent 55%),
+        linear-gradient(180deg, #fdf6ee 0%, #f9ede3 40%, #f5e8f0 70%, #efe8f8 100%);
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg opacity='0.045' fill='%23c2185b'%3E%3Cellipse cx='60' cy='20' rx='8' ry='14'/%3E%3Cellipse cx='60' cy='20' rx='8' ry='14' transform='rotate(45 60 60)'/%3E%3Cellipse cx='60' cy='20' rx='8' ry='14' transform='rotate(90 60 60)'/%3E%3Cellipse cx='60' cy='20' rx='8' ry='14' transform='rotate(135 60 60)'/%3E%3Ccircle cx='60' cy='60' r='7' fill='%23d4a853'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 120px 120px;
+    }
+    .page-wrap { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 0 16px 100px; }
+
+    /* HEADER */
+    .page-header {
+      text-align: center; padding: 52px 28px 40px;
+      background: rgba(255,250,245,0.93);
+      border-radius: 4px; margin-bottom: 32px;
+      position: relative;
+      box-shadow: 0 4px 40px rgba(123,45,139,0.08);
+    }
+    .page-header::before { content:''; position:absolute; inset:8px; border:1px solid rgba(194,24,91,0.18); pointer-events:none; }
+    .page-header::after  { content:''; position:absolute; inset:13px; border:1px dashed rgba(212,168,83,0.25); pointer-events:none; }
+    .page-header > * { position: relative; z-index: 1; }
+
+    .corner { position:absolute; font-size:1.3rem; opacity:0.7; }
+    .c-tl { top:16px; right:16px; } .c-tr { top:16px; left:16px; }
+    .c-bl { bottom:16px; right:16px; } .c-br { bottom:16px; left:16px; }
+
+    .brand-logo {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; font-weight: 900; color: #fff;
+      margin: 0 auto 14px;
+      box-shadow: 0 4px 16px rgba(123,45,139,0.35);
+    }
+    .brand-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--purple); margin-bottom: 8px;
+    }
+    .page-tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem; color: var(--fuchsia); margin-bottom: 16px;
+    }
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 20px;
+      color: var(--gold); font-size: 0.75rem; letter-spacing: 5px;
+    }
+    .ornament-bar { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .page-h1 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900; color: var(--text); line-height: 1.2; margin-bottom: 8px;
+    }
+    .page-h1 em { font-style: normal; color: var(--purple); }
+    .page-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.15rem; color: var(--fuchsia); margin-bottom: 14px;
+    }
+    .page-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; max-width: 480px; margin: 0 auto; }
+
+    /* GAME CARDS */
+    .game-card {
+      background: rgba(255,250,245,0.93);
+      border-radius: 4px; margin-bottom: 28px;
+      border: 1px solid rgba(212,168,83,0.2);
+      box-shadow: 0 2px 16px rgba(123,45,139,0.07);
+      overflow: hidden; position: relative;
+    }
+    .game-card::before { content:''; position:absolute; top:0; right:0; width:4px; height:100%; background: linear-gradient(to bottom, var(--fuchsia), var(--purple)); }
+
+    .game-header {
+      padding: 22px 24px 16px;
+      display: flex; align-items: center; gap: 16px;
+      border-bottom: 1px dashed rgba(212,168,83,0.25);
+      cursor: pointer;
+    }
+    .game-num {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 2rem; font-weight: 900;
+      color: rgba(212,168,83,0.35); flex-shrink: 0; min-width: 42px;
+    }
+    .game-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .game-title-wrap { flex: 1; }
+    .game-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--fuchsia); margin-bottom: 3px;
+    }
+    .game-subtitle { font-size: 0.8rem; color: var(--muted); }
+    .game-toggle {
+      font-size: 1.2rem; color: var(--purple); flex-shrink: 0;
+      transition: transform 0.3s; user-select: none;
+    }
+    .game-card.open .game-toggle { transform: rotate(180deg); }
+
+    .game-body { display: none; padding: 20px 24px 24px; }
+    .game-card.open .game-body { display: block; }
+
+    .game-how {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem; color: var(--purple); margin-bottom: 14px;
+    }
+    .game-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+
+    /* Questions */
+    .questions-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 0.95rem; font-weight: 700; color: var(--text);
+      margin-bottom: 12px;
+    }
+    .question-item {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(212,168,83,0.2);
+      border-radius: 4px; padding: 12px 16px;
+      margin-bottom: 8px; font-size: 0.86rem;
+      color: var(--text); line-height: 1.55;
+      cursor: pointer; transition: all 0.2s;
+      position: relative;
+    }
+    .question-item:hover { border-color: rgba(194,24,91,0.25); box-shadow: 0 2px 10px rgba(123,45,139,0.08); }
+    .question-item.revealed { background: rgba(248,240,252,0.8); border-color: rgba(123,45,139,0.2); }
+    .q-num { font-weight: 800; color: var(--fuchsia); margin-left: 6px; }
+    .q-answer {
+      display: none; margin-top: 8px; padding-top: 8px;
+      border-top: 1px dashed rgba(212,168,83,0.3);
+      font-size: 0.82rem; color: var(--purple); font-weight: 600;
+    }
+    .question-item.revealed .q-answer { display: block; }
+
+    /* Timer */
+    .timer-wrap {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(212,168,83,0.2);
+      border-radius: 4px; padding: 14px 18px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .timer-display {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.8rem; font-weight: 900; color: var(--purple);
+      min-width: 60px;
+    }
+    .timer-btn {
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      color: #fff; border: none; border-radius: 100px;
+      padding: 8px 18px; font-family: 'Heebo', sans-serif;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .timer-btn:hover { transform: scale(1.05); }
+
+    /* Cards game */
+    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .flip-card {
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      border-radius: 4px; padding: 16px 12px;
+      text-align: center; cursor: pointer;
+      min-height: 80px; display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .flip-card .front { color: #fff; font-size: 1.5rem; }
+    .flip-card .back { display: none; font-size: 0.82rem; color: #fff; font-weight: 700; line-height: 1.4; }
+    .flip-card.flipped { background: linear-gradient(135deg, var(--fuchsia), #e91e8c); }
+    .flip-card.flipped .front { display: none; }
+    .flip-card.flipped .back { display: block; }
+
+    /* Divider */
+    .cat-header { display: flex; align-items: center; gap: 10px; margin: 32px 0 18px; }
+    .cat-line { flex:1; height:1px; background: linear-gradient(90deg, transparent, rgba(212,168,83,0.35), transparent); }
+    .cat-label { font-family: 'Dancing Script', cursive; font-size: 1rem; color: var(--fuchsia); padding: 0 6px; }
+
+    /* FOOTER CTA */
+    .footer-cta {
+      margin-top: 44px; background: rgba(255,250,245,0.92);
+      border-radius: 4px; padding: 40px 28px; text-align: center;
+      border: 1px solid rgba(212,168,83,0.2);
+      box-shadow: 0 4px 30px rgba(123,45,139,0.08); position: relative;
+    }
+    .footer-cta::before { content:''; position:absolute; inset:6px; border:1px solid rgba(194,24,91,0.14); pointer-events:none; }
+    .footer-cta::after  { content:''; position:absolute; inset:10px; border:1px dashed rgba(212,168,83,0.2); pointer-events:none; }
+    .footer-cta > * { position: relative; z-index: 1; }
+    .fcta-script { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: var(--fuchsia); margin-bottom: 8px; display: block; }
+    .fcta-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(1.2rem, 3.5vw, 1.8rem); font-weight: 900; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+    .fcta-title em { font-style: normal; color: var(--purple); }
+    .fcta-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; line-height: 1.65; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      color: #fff; font-family: 'Heebo', sans-serif;
+      font-size: 1rem; font-weight: 800; padding: 15px 36px;
+      border-radius: 100px; text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 6px 22px rgba(123,45,139,0.38); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(123,45,139,0.48); }
+
+    /* Floating WA */
+    .wa-float {
+      position: fixed; bottom: 22px; left: 22px;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--fuchsia), var(--purple));
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(194,24,91,0.42);
+      z-index: 999; text-decoration: none;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+    @keyframes floatBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .wa-float:hover { animation: none; transform: scale(1.1); }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 36px 18px 28px; }
+      .game-header { padding: 16px 14px; gap: 10px; }
+      .game-body { padding: 14px 14px 18px; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="Guide.html" style="position:fixed;top:16px;right:16px;z-index:1000;display:flex;align-items:center;gap:8px;background:rgba(255,250,245,0.95);border:1px solid rgba(212,168,83,0.3);color:#7b2d8b;font-family:'Heebo',sans-serif;font-weight:700;font-size:0.85rem;padding:8px 16px;border-radius:100px;text-decoration:none;box-shadow:0 2px 12px rgba(123,45,139,0.15);backdrop-filter:blur(6px);">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  חזרה למדריך
+</a>
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <span class="corner c-tl">🌸</span>
+    <span class="corner c-tr">🌸</span>
+    <span class="corner c-bl">🍃</span>
+    <span class="corner c-br">🍃</span>
+    <div class="brand-logo">MB</div>
+    <div class="brand-name">Multi Brawn</div>
+    <div class="page-tagline">~ מחברים לבבות, יוצרים זיכרונות ~</div>
+    <div class="ornament">
+      <div class="ornament-bar"></div>
+      <span>✦ 🌸 ✦</span>
+      <div class="ornament-bar"></div>
+    </div>
+    <h1 class="page-h1">משחקי <em>החיבור</em><br>לשבת החתן</h1>
+    <div class="page-script">5 משחקים לשתי משפחות שהופכות לאחת</div>
+    <p class="page-desc">משחקים חמים, צנועים ומשמחים שיוצרים שיחות אמיתיות, צחוק משותף וקשרים שיישארו הרבה אחרי השבת 🌸</p>
+  </div>
+
+  <!-- GAME 1 -->
+  <div class="cat-header"><div class="cat-line"></div><span class="cat-label">✦ משחק 1 ✦</span><div class="cat-line"></div></div>
+
+  <div class="game-card" id="game1">
+    <div class="game-header" onclick="toggleGame('game1')">
+      <div class="game-num">01</div>
+      <div class="game-icon">❓</div>
+      <div class="game-title-wrap">
+        <div class="game-title">מי אני?</div>
+        <div class="game-subtitle">משחק ניחושים – הכרות מהנה עם המשפחה החדשה</div>
+      </div>
+      <div class="game-toggle">▼</div>
+    </div>
+    <div class="game-body">
+      <div class="game-how">איך משחקים?</div>
+      <div class="game-desc">כל אחד מקבל כרטיס עם שם של אחד מבני הזוג או משפחתם. מדביקים על המצח ולא מסתכלים. שואלים שאלות כן/לא כדי לנחש מי הם. המנחל ימשיך עד שכולם ניחשו!</div>
+      <div class="questions-title">🃏 לחצו על כרטיס כדי לגלות</div>
+      <div class="cards-grid">
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">👰</span><span class="back">הכלה</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">🤵</span><span class="back">החתן</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">👨‍👩‍👧</span><span class="back">אמא של הכלה</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">👨‍👩‍👦</span><span class="back">אבא של החתן</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">👧</span><span class="back">אחות הכלה</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">👦</span><span class="back">אח החתן</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 2 -->
+  <div class="cat-header"><div class="cat-line"></div><span class="cat-label">✦ משחק 2 ✦</span><div class="cat-line"></div></div>
+
+  <div class="game-card" id="game2">
+    <div class="game-header" onclick="toggleGame('game2')">
+      <div class="game-num">02</div>
+      <div class="game-icon">💬</div>
+      <div class="game-title-wrap">
+        <div class="game-title">שאלות שמחברות</div>
+        <div class="game-subtitle">שיחות עמוקות ומשמחות סביב השולחן</div>
+      </div>
+      <div class="game-toggle">▼</div>
+    </div>
+    <div class="game-body">
+      <div class="game-how">איך משחקים?</div>
+      <div class="game-desc">המנחל שולף שאלה, כל אחד סביב השולחן עונה. אין תשובה נכונה או לא נכונה – רק שיחה אמיתית וצחוק משותף!</div>
+      <div class="questions-title">לחצו על שאלה לגלות אותה</div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">1.</span> מה הזיכרון הכי מצחיק שיש לך מהחתן/כלה?
+        <div class="q-answer">💡 שאלה שפותחת סיפורים מצחיקים ומחממת את האווירה!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">2.</span> מה המאכל שהכי מזכיר לך שבת בבית?
+        <div class="q-answer">💡 שאלה על מסורת משפחתית – מחברת בין שתי התרבויות!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">3.</span> איזה עצה אחת היית נותן לזוג החדש?
+        <div class="q-answer">💡 רגע מרגש שבו הניסיון משתף!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">4.</span> מה הדבר הראשון שאמרת כשנפגשת עם בן/בת הזוג בפעם הראשונה?
+        <div class="q-answer">💡 סיפורים מצחיקים ומרגשים בהחלט!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">5.</span> מה תכונה אחת של החתן/כלה שאהבת מהרגע הראשון?
+        <div class="q-answer">💡 רגע חם שמחזק את הקשר החדש!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">6.</span> אם המשפחה שלך הייתה סדרה, איך היית קורא לה?
+        <div class="q-answer">💡 שאלה קלילה שגורמת לצחוקים!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 3 -->
+  <div class="cat-header"><div class="cat-line"></div><span class="cat-label">✦ משחק 3 ✦</span><div class="cat-line"></div></div>
+
+  <div class="game-card" id="game3">
+    <div class="game-header" onclick="toggleGame('game3')">
+      <div class="game-num">03</div>
+      <div class="game-icon">⏱️</div>
+      <div class="game-title-wrap">
+        <div class="game-title">60 שניות</div>
+        <div class="game-subtitle">משחק הסברים מהיר ומצחיק</div>
+      </div>
+      <div class="game-toggle">▼</div>
+    </div>
+    <div class="game-body">
+      <div class="game-how">איך משחקים?</div>
+      <div class="game-desc">מחלקים לשתי קבוצות – משפחת החתן מול משפחת הכלה. כל אחד צריך להסביר כמה שיותר מילים ב-60 שניות בלי לומר את המילה עצמה. הקבוצה עם הכי הרבה נקודות מנצחת!</div>
+
+      <div class="timer-wrap">
+        <div class="timer-display" id="timerDisplay">60</div>
+        <button class="timer-btn" onclick="startTimer()">▶ התחל</button>
+        <button class="timer-btn" onclick="resetTimer()" style="background: linear-gradient(135deg, #888, #aaa);">↺ אפס</button>
+      </div>
+
+      <div class="questions-title">🃏 מילות הסבר – לחצו לגלות</div>
+      <div class="cards-grid">
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">🎂</span><span class="back">עוגת חתונה</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">💍</span><span class="back">טבעת נישואין</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">🕍</span><span class="back">בית כנסת</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">🕯️</span><span class="back">נרות שבת</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">🥂</span><span class="back">לחיים!</span></div>
+        <div class="flip-card" onclick="flipCard(this)"><span class="front">👨‍👩‍👧‍👦</span><span class="back">משפחה מורחבת</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 4 -->
+  <div class="cat-header"><div class="cat-line"></div><span class="cat-label">✦ משחק 4 ✦</span><div class="cat-line"></div></div>
+
+  <div class="game-card" id="game4">
+    <div class="game-header" onclick="toggleGame('game4')">
+      <div class="game-num">04</div>
+      <div class="game-icon">🤝</div>
+      <div class="game-title-wrap">
+        <div class="game-title">מה משותף לנו?</div>
+        <div class="game-subtitle">גילוי הדמיון בין שתי המשפחות</div>
+      </div>
+      <div class="game-toggle">▼</div>
+    </div>
+    <div class="game-body">
+      <div class="game-how">איך משחקים?</div>
+      <div class="game-desc">מחלקים לזוגות – אחד מכל משפחה. כל זוג צריך למצוא 5 דברים משותפים תוך 3 דקות. בסוף כל זוג משתף את הממצאים! תתפלאו כמה יש לכם במשותף!</div>
+      <div class="questions-title">רעיונות לנושאים משותפים</div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">🍽️</span> מאכל שבת אהוב
+        <div class="q-answer">צ'ולנט? חמין? גפילטע פיש? מי יודע!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">✈️</span> יעד נסיעה שרוצים לבקר
+        <div class="q-answer">אולי תגלו שיש יעד שמשתי המשפחות רוצות!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">🎵</span> זמר/שיר שאוהבים
+        <div class="q-answer">אולי יש שיר שמשתי המשפחות שרות בשבת!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">😂</span> סוג הומור משפחתי
+        <div class="q-answer">הומור פיזי? בדיחות? מצבים מביכים?</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">🌟</span> ערך שהכי חשוב במשפחה
+        <div class="q-answer">כנראה שני הצדדים יגלו שהערכים דומים!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 5 -->
+  <div class="cat-header"><div class="cat-line"></div><span class="cat-label">✦ משחק 5 ✦</span><div class="cat-line"></div></div>
+
+  <div class="game-card" id="game5">
+    <div class="game-header" onclick="toggleGame('game5')">
+      <div class="game-num">05</div>
+      <div class="game-icon">💌</div>
+      <div class="game-title-wrap">
+        <div class="game-title">ברכה מהלב</div>
+        <div class="game-subtitle">סיום מרגש ומחמם ללב</div>
+      </div>
+      <div class="game-toggle">▼</div>
+    </div>
+    <div class="game-body">
+      <div class="game-how">איך משחקים?</div>
+      <div class="game-desc">כל אחד כותב ברכה קצרה לזוג על פתק – אחת מצחיקה ואחת רצינית. מקפלים ושמים בקופסה. החתן והכלה שולפים ומקראים בקול. מומלץ לשמור את הפתקים כזיכרון!</div>
+      <div class="questions-title">השלימו את המשפטים:</div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">1.</span> "אני מאחל לכם ש..."
+        <div class="q-answer">💌 פתחו שיחה – כל אחד משלים בקול!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">2.</span> "הדבר הכי מצחיק שיקרה לכם הוא..."
+        <div class="q-answer">😂 לרגע של צחוק ושמחה!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">3.</span> "בעוד 10 שנים אתם תספרו לנכדים על..."
+        <div class="q-answer">💡 שאלה שפותחת חלומות ומחברת לבבות!</div>
+      </div>
+      <div class="question-item" onclick="this.classList.toggle('revealed')">
+        <span class="q-num">4.</span> "הסוד שלי לנישואין מוצלחים הוא..."
+        <div class="q-answer">🌟 כל דור מעביר חוכמה לדור הבא!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta">
+    <span class="corner c-tl" style="font-size:1rem">🌸</span>
+    <span class="corner c-tr" style="font-size:1rem">🌸</span>
+    <span class="fcta-script">~ רוצה שבת חתן מושלמת? ~</span>
+    <h2 class="fcta-title">Multi Brawn תעזור לכם <em>לחבר</em><br>את שתי המשפחות</h2>
+    <p class="fcta-sub">המומחיות שלנו בשבתות חתן – בשבילכם. בואי נדבר 🌸</p>
+    <a href="https://wa.me/972500000000?text=היי%20ערדית%2C%20ראיתי%20את%20משחקי%20החיבור%20ורוצה%20לשמוע%20עוד" class="wa-btn" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.975-1.404A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.963 7.963 0 01-4.073-1.113l-.292-.174-3.03.855.81-2.965-.19-.304A7.96 7.6 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+      דברי איתי עכשיו
+    </a>
+  </div>
+
+</div>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/972500000000" class="wa-float" target="_blank">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.975-1.404A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.963 7.963 0 01-4.073-1.113l-.292-.174-3.03.855.81-2.965-.19-.304A7.96 7.6 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+</a>
+
+<script>
+  function toggleGame(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+  function flipCard(el) {
+    el.classList.toggle('flipped');
+  }
+
+  // Timer
+  let timerInterval = null;
+  let timeLeft = 60;
+  function startTimer() {
+    if (timerInterval) return;
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      document.getElementById('timerDisplay').textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        document.getElementById('timerDisplay').textContent = '⏰';
+      }
+    }, 1000);
+  }
+  function resetTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timeLeft = 60;
+    document.getElementById('timerDisplay').textContent = '60';
+  }
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multibrawn - שבת חתן מושלמת</title>
+    <link href="https://unpkg.com/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Assistant', sans-serif; background-color: #f1f5f9; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .lace-background { background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-20 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm10-20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm0 40c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z' fill='%23d946ef' fill-opacity='0.03'/%3E%3C/svg%3E"); }
+        .slide { display: none; flex-direction: column; animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .slide.active { display: flex; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fuchsia-brand { color: #d946ef; }
+        .bg-fuchsia { background-color: #d946ef; }
+        .silver-border { border-color: #cbd5e1; }
+        .corner-lace { position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 2px dashed #cbd5e1; opacity: 0.2; }
+    </style>
+</head>
+<body class="lace-background p-4 md:p-10">
+    <div class="relative w-full max-w-xl bg-white rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border-[12px] border-slate-50 flex flex-col min-h-[620px]">
+        <div class="corner-lace -top-10 -right-10"></div>
+        <div class="corner-lace -bottom-10 -left-10"></div>
+        <div class="h-12 bg-white flex items-center justify-center border-b border-slate-50 relative z-10">
+            <div class="flex gap-3">
+                <div class="w-3 h-3 rounded-full bg-fuchsia opacity-20"></div>
+                <div class="w-3 h-3 rounded-full bg-slate-300 opacity-20"></div>
+                <div class="w-3 h-3 rounded-full bg-fuchsia opacity-20"></div>
+            </div>
+        </div>
+        <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative z-10">
+
+            <!-- Slide 1 -->
+            <div id="slide-0" class="slide active items-center text-center space-y-8">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-fuchsia-100 rounded-full scale-150 opacity-20 animate-pulse"></div>
+                    <div class="relative p-6 border-4 silver-border rounded-full inline-block bg-white shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 fuchsia-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h1 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">מקצוענות<br>שווה כסף</h1>
+                    <p class="text-2xl fuchsia-brand font-light italic tracking-tight">המדריך האסטרטגי לשבת חתן</p>
+                </div>
+                <div class="h-1 w-32 bg-fuchsia mx-auto rounded-full"></div>
+                <div class="text-slate-400 font-bold tracking-[0.4em] text-xs uppercase">Multibrawn | ערדית בראון</div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div id="slide-1" class="slide space-y-6">
+                <h2 class="text-3xl font-black text-slate-900 border-r-8 border-fuchsia-500 pr-4 leading-tight">מוקשים בחוזה:<br><span class="fuchsia-brand text-2xl">איפה הכסף בורח?</span></h2>
+                <div class="space-y-4">
+                    <div class="group p-5 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-md transition-all">
+                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">⚡ חשמל גלובלי</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">בלי "לפי מונה"! שבת של 25 שעות עם מזגנים היא בור תקציבי. סגרו מחיר הכל-כלול מראש.</p>
+                    </div>
+                    <div class="group p-5 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-md transition-all">
+                        <h3 class="font-bold fuchsia-brand text-lg mb-1 flex items-center gap-2">🧹 מי מנקה?</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">הגדירו בחוזה מי מנקה רצפה ושירותים בשבת. אל תניחו שהמקום עושה זאת כברירת מחדל.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div id="slide-2" class="slide items-center text-center space-y-10">
+                <h2 class="text-3xl font-bold text-slate-900">חוק ה-14:00</h2>
+                <div class="relative w-full max-w-sm">
+                    <div class="absolute inset-0 bg-fuchsia opacity-10 blur-3xl rounded-full"></div>
+                    <div class="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl transform rotate-2 relative">
+                        <p class="text-7xl font-black mb-2 tracking-tighter italic">14:00</p>
+                        <p class="text-xl font-bold fuchsia-brand uppercase tracking-widest">בחדרים!</p>
+                    </div>
+                </div>
+                <p class="text-slate-500 font-medium px-6 leading-relaxed italic">בשבתות חורף קצרות, הגעה מאוחרת היא האויב של השמחה. סיימו את המירוץ מוקדם.</p>
+            </div>
+
+            <!-- Slide 4 -->
+            <div id="slide-3" class="slide space-y-8">
+                <h2 class="text-3xl font-black text-slate-900 border-r-8 border-fuchsia-500 pr-4 leading-tight">הפרטים הקטנים<br><span class="fuchsia-brand text-2xl">שסוגרים אירוע</span></h2>
+                <div class="grid grid-cols-1 gap-5">
+                    <div class="flex items-center gap-5 p-6 border-2 silver-border rounded-[2.5rem] bg-white shadow-sm">
+                        <span class="text-4xl bg-slate-50 p-3 rounded-full">🛍️</span>
+                        <div>
+                            <h4 class="font-bold fuchsia-brand text-lg">שקיות ניילון</h4>
+                            <p class="text-slate-500 text-xs mt-1">לאריזת שאריות ופינוי מהיר. אל תשכחו לוודא שיש במקום.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-5 p-6 border-2 silver-border rounded-[2.5rem] bg-white shadow-sm">
+                        <span class="text-4xl bg-slate-50 p-3 rounded-full">🎲</span>
+                        <div>
+                            <h4 class="font-bold fuchsia-brand text-lg">משחקים וחיבורים</h4>
+                            <p class="text-slate-500 text-xs mt-1">פינת משחקי קופסה בלובי וטריוויה משפחתית סביב השולחן.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5 – כפתור מקושר ל-guide.html -->
+            <div id="slide-4" class="slide items-center text-center space-y-12">
+                <div class="space-y-4">
+                    <h2 class="text-4xl font-black text-slate-900 leading-tight tracking-tighter">המדריך נתן כלים,<br>אני אתן לך שקט.</h2>
+                    <p class="text-slate-400 font-medium italic">"בואי נהפוך את השבת שלך לסיפור הצלחה בסטנדרט מולטי בראון."</p>
+                </div>
+                <div class="w-full space-y-4">
+                    <div class="p-6 bg-white border-2 border-fuchsia-500 rounded-[2rem] shadow-xl hover:translate-y-[-5px] transition-all duration-300">
+                        <h4 class="font-bold fuchsia-brand text-xl">בנק הלוקיישנים הסודי</h4>
+                    </div>
+                    <div class="p-6 bg-white border-2 border-slate-100 rounded-[2rem] hover:border-fuchsia-200 transition-all duration-300">
+                        <h4 class="font-bold text-slate-800 text-xl">בדיקת חוזה VIP</h4>
+                    </div>
+                </div>
+                <!-- ✅ כפתור מקושר למדריך 25 השלבים -->
+                <a href="Guide.html"
+                   style="background-color:#d946ef; text-decoration:none; display:block;"
+                   class="w-full py-6 rounded-full text-white font-black text-2xl text-center shadow-[0_15px_30px_rgba(217,70,239,0.3)] active:scale-95 transition-all">
+                    בואי נתחיל לעבוד
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="bg-slate-50 p-8 flex items-center justify-between border-t border-slate-100 mt-auto relative z-20">
+            <button onclick="prevSlide()" class="text-slate-400 hover:text-fuchsia-600 transition-colors p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <div class="flex gap-3" id="nav-dots"></div>
+            <button onclick="nextSlide()" class="text-slate-900 hover:text-fuchsia-600 transition-colors p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentIdx = 0;
+        const total = 5;
+        function updateUI() {
+            document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === currentIdx));
+            const dots = document.getElementById('nav-dots');
+            dots.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const d = document.createElement('div');
+                d.className = `h-3 rounded-full transition-all duration-500 ${i === currentIdx ? 'w-12 bg-fuchsia' : 'w-3 bg-slate-200'}`;
+                dots.appendChild(d);
+            }
+        }
+        function nextSlide() { if (currentIdx < total - 1) { currentIdx++; updateUI(); } }
+        function prevSlide() { if (currentIdx > 0) { currentIdx--; updateUI(); } }
+        updateUI();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Multi Brawn | שבת חתן מושלמת</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -729,7 +1389,7 @@
     <div class="step-card" data-step="25" onclick="toggleStep(this)">
       <div class="step-check"><svg width="12" height="10" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="step-num">25</div>
-      <div class="step-body"><div class="step-title">הפעלת משחקי החיבור</div><div class="step-desc">פעילות שמחברת בין שתי המשפחות. שאלות, סיפורים, כרטיסי "הכירי אותי". אירוע שבו אנשים חדשים הפכו לחברים הוא אירוע שהצליח.</div><a href="games.html" style="display:inline-block;margin-top:12px;background:linear-gradient(135deg,#c2185b,#7b2d8b);color:#fff;font-weight:800;padding:10px 24px;border-radius:100px;text-decoration:none;font-family:inherit;font-size:0.88rem;box-shadow:0 4px 14px rgba(123,45,139,0.35);">🎲 למשחקי החיבור</a></div>
+      <div class="step-body"><div class="step-title">הפעלת משחקי החיבור</div><div class="step-desc">פעילות שמחברת בין שתי המשפחות. שאלות, סיפורים, כרטיסי "הכירי אותי". אירוע שבו אנשים חדשים הפכו לחברים הוא אירוע שהצליח.</div></div>
     </div>
 
     <!-- FOOTER CTA -->
