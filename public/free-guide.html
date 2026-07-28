@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>המדריך החינמי לשבת חתן · Multibrawn</title>
+<meta name="description" content="מדריך שבת חתן של Multibrawn: מה באמת קורה בכל שעה, מה עולה כמה, מה שוכחים להזמין ואיפה מפסידים כסף.">
+<meta property="og:title" content="המדריך לשבת חתן · Multibrawn">
+<meta property="og:description" content="25 שעות שאי אפשר לדחות. מה קורה בכל אחת מהן, ומה עולה כסף.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/brand.css">
+<style>
+/* ============================================================
+   Multibrawn · מדריך שבת חתן (סגנונות ייחודיים לדף הזה)
+   טוקנים — נעולים לפי מיתוג Multibrawn
+   ============================================================ */
+
+
+/* ---------- Progress + Nav ---------- */
+#progress{position:fixed; top:0; right:0; height:2px; width:0%; background:var(--fuchsia); z-index:100}
+header{
+  position:sticky; top:0; z-index:60;
+  background:rgba(251,248,255,.82); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:20px; height:64px}
+.logo{font-family:'Frank Ruhl Libre',serif; font-size:21px; font-weight:700; letter-spacing:-.03em; text-decoration:none; white-space:nowrap}
+.logo i{font-family:'Dancing Script',cursive; font-style:normal; font-weight:600; color:var(--fuchsia); font-size:24px}
+.nav-links{display:flex; gap:26px; font-size:14.5px; color:var(--violet-soft)}
+.nav-links a{text-decoration:none; padding:4px 0; border-bottom:1px solid transparent; transition:.25s var(--ease)}
+.nav-links a:hover{color:var(--plum); border-color:var(--fuchsia)}
+@media(max-width:900px){.nav-links{display:none}}
+
+.btn-ghost{border-color:var(--line); color:var(--plum); background:var(--card)}
+
+/* ---------- Hero ---------- */
+.hero{padding:clamp(56px,9vw,110px) 0 clamp(40px,6vw,72px); position:relative}
+.hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,64px); align-items:end}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr; align-items:start}}
+h1{font-size:clamp(40px,7.4vw,80px); font-weight:500}
+h1 .em{font-weight:900}
+h1 .thin{display:block; font-weight:300; color:var(--violet-soft)}
+.hero p.lead{margin-top:26px; max-width:46ch}
+.hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
+.hero-note{margin-top:18px; font-size:13.5px; color:var(--violet-soft)}
+
+.stat-stack{display:grid; gap:14px}
+.stat{
+  background:var(--card); border:1px solid var(--line-soft); border-radius:var(--r-m);
+  padding:20px 22px; box-shadow:var(--shadow-s);
+}
+.stat b{display:block; font-family:'Frank Ruhl Libre',serif; font-size:34px; font-weight:700; line-height:1; letter-spacing:-.03em}
+.stat span{font-size:13.5px; color:var(--violet-soft); display:block; margin-top:7px}
+.stat.accent{background:var(--plum); border-color:var(--plum)}
+.stat.accent b{color:#fff}
+.stat.accent span{color:#C7B8E0}
+
+/* ---------- Shabbat band (signature) ---------- */
+.band{
+  margin-top:clamp(44px,6vw,76px); background:var(--card);
+  border:1px solid var(--line-soft); border-radius:var(--r-l);
+  padding:clamp(22px,3vw,34px) clamp(18px,3vw,34px) clamp(18px,2.4vw,26px);
+  box-shadow:var(--shadow-m);
+}
+.band-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:26px; flex-wrap:wrap}
+.band-head h3{font-size:19px; font-weight:700}
+.band-head em{font-style:normal; font-size:13px; color:var(--violet-soft)}
+.band-track{position:relative; padding-top:22px}
+.band-line{position:absolute; top:28px; right:0; left:0; height:1px; background:var(--line)}
+.band-dots{display:flex; justify-content:space-between; position:relative; gap:4px}
+.band-dot{flex:1; text-align:center; position:relative; opacity:0}
+.band-dot .d{
+  width:11px; height:11px; border-radius:50%; background:var(--bg-2);
+  border:2px solid var(--violet); margin:0 auto 12px; position:relative; z-index:2;
+  transition:.3s var(--ease);
+}
+.band-dot.hot .d{background:var(--fuchsia); border-color:var(--fuchsia); box-shadow:0 0 0 5px rgba(255,0,144,.14)}
+.band-dot .t{font-size:11.5px; color:var(--violet-soft); line-height:1.35; display:block}
+.band-dot.hot .t{color:var(--fuchsia); font-weight:500}
+@media(max-width:760px){
+  .band-dots{flex-wrap:wrap; justify-content:flex-start; gap:14px 0}
+  .band-dot{flex:0 0 33.33%}
+  .band-line{display:none}
+}
+@keyframes pop{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+
+/* ---------- Section shell ---------- */
+section{padding:clamp(64px,9vw,120px) 0}
+.tinted{background:var(--bg-2)}
+.sec-head{max-width:760px; margin-bottom:clamp(34px,5vw,58px)}
+.sec-head h2{font-size:clamp(29px,4.6vw,50px); margin-top:16px}
+.sec-head p{margin-top:18px}
+
+/* ---------- Timeline ---------- */
+.tl{position:relative; padding-inline-start:0}
+.tl::before{content:""; position:absolute; top:6px; bottom:6px; right:9px; width:1px; background:var(--line)}
+.tl-fill{position:absolute; top:6px; right:9px; width:1px; background:var(--fuchsia); height:0}
+.tl-item{position:relative; padding-inline-end:44px; padding-bottom:34px}
+.tl-item::before{
+  content:""; position:absolute; right:4px; top:11px; width:11px; height:11px;
+  border-radius:50%; background:var(--bg); border:2px solid var(--violet); z-index:2; transition:.35s var(--ease);
+}
+.tl-item.on::before{background:var(--fuchsia); border-color:var(--fuchsia); transform:scale(1.15)}
+.tinted .tl-item::before{background:var(--bg-2)}
+.tl-hour{font-size:12.5px; letter-spacing:.1em; color:var(--violet); font-weight:500}
+.tl-item h3{font-size:22px; margin:7px 0 9px; font-weight:700}
+.tl-item p{color:var(--violet-soft); max-width:62ch; font-size:16px}
+.tag{
+  display:inline-flex; align-items:center; gap:7px; margin-top:14px;
+  background:var(--card); border:1px solid var(--line); border-radius:100px;
+  padding:7px 15px; font-size:13.5px; color:var(--plum);
+}
+.tag b{color:var(--fuchsia); font-weight:500}
+.tl-item.pin .tag{border-color:rgba(255,0,144,.3); background:rgba(255,0,144,.05)}
+
+/* ---------- Bento ---------- */
+.bento{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.cell{
+  background:var(--card); border:1px solid var(--line-soft); border-radius:var(--r-l);
+  padding:clamp(22px,2.6vw,32px); box-shadow:var(--shadow-s);
+  transition:.4s var(--ease); position:relative; overflow:hidden;
+}
+.cell:hover{transform:translateY(-4px); box-shadow:var(--shadow-m); border-color:var(--line)}
+.cell h3{font-size:21px; font-weight:700; margin-bottom:10px}
+.cell p{color:var(--violet-soft); font-size:15.5px}
+.cell .k{font-size:12px; letter-spacing:.12em; color:var(--violet); margin-bottom:14px; display:block}
+.c-2{grid-column:span 2} .c-3{grid-column:span 3} .c-4{grid-column:span 4}
+.cell.dark{background:var(--plum); border-color:var(--plum); color:#fff}
+.cell.dark p{color:#C7B8E0}
+.cell.dark .k{color:var(--fuchsia)}
+.cell-list{list-style:none; padding:0; margin:16px 0 0; display:grid; gap:9px}
+.cell-list li{font-size:15px; color:var(--violet-soft); padding-inline-start:18px; position:relative}
+.cell-list li::before{content:""; position:absolute; right:0; top:11px; width:5px; height:5px; border-radius:50%; background:var(--violet)}
+.cell.dark .cell-list li{color:#C7B8E0}
+.cell.dark .cell-list li::before{background:var(--fuchsia)}
+@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)} .c-3,.c-4{grid-column:span 2}}
+@media(max-width:600px){.bento{grid-template-columns:1fr} .c-2,.c-3,.c-4{grid-column:span 1}}
+
+/* ---------- Money ---------- */
+.money{display:grid; gap:14px}
+.leak{
+  display:grid; grid-template-columns:120px 1fr auto; gap:22px; align-items:center;
+  background:var(--card); border:1px solid var(--line-soft); border-radius:var(--r-m);
+  padding:24px 26px; box-shadow:var(--shadow-s); transition:.35s var(--ease);
+}
+.leak:hover{border-color:var(--violet); transform:translateX(-4px)}
+.gap-label{font-size:12.5px; font-weight:500; letter-spacing:.06em}
+.g-3{color:var(--fuchsia)} .g-2{color:var(--violet)} .g-1{color:var(--violet-soft)}
+.bars{display:flex; gap:4px; margin-top:8px}
+.bars i{display:block; width:16px; height:4px; border-radius:2px; background:var(--line)}
+.g-3 .bars i:nth-child(-n+3){background:var(--fuchsia)}
+.g-2 .bars i:nth-child(-n+2){background:var(--violet)}
+.g-1 .bars i:nth-child(-n+1){background:var(--violet-soft)}
+.leak h3{font-size:19px; font-weight:700; margin-bottom:6px}
+.leak p{font-size:15.5px; color:var(--violet-soft)}
+.leak .num{font-family:'Frank Ruhl Libre',serif; font-size:15px; color:var(--violet-soft); white-space:nowrap}
+@media(max-width:820px){.leak{grid-template-columns:1fr; gap:12px} .leak .num{text-align:start}}
+
+/* ---------- Forgotten chips ---------- */
+.chip-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:28px}
+@media(max-width:860px){.chip-groups{grid-template-columns:1fr}}
+.chip-groups h4{font-size:15px; font-weight:700; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--line)}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{
+  background:var(--card); border:1px solid var(--line); border-radius:100px;
+  padding:8px 15px; font-size:14px; color:var(--violet-soft); transition:.25s var(--ease);
+}
+.chip:hover{border-color:var(--fuchsia); color:var(--plum)}
+
+/* ---------- People ---------- */
+.people{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+@media(max-width:900px){.people{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.people{grid-template-columns:1fr}}
+.person{
+  background:var(--card); border:1px solid var(--line-soft); border-radius:var(--r-l);
+  padding:28px; box-shadow:var(--shadow-s); transition:.4s var(--ease);
+}
+.person:hover{transform:translateY(-4px); box-shadow:var(--shadow-m)}
+.person h3{font-size:19px; font-weight:700}
+.person .want{font-size:13px; color:var(--violet); margin:12px 0 10px; letter-spacing:.04em}
+.person p{font-size:15.5px; color:var(--violet-soft)}
+.friction{margin-top:18px; display:grid; gap:12px}
+.fr{
+  background:var(--card); border:1px solid var(--line-soft); border-inline-start:3px solid var(--fuchsia);
+  border-radius:var(--r-s); padding:20px 24px;
+}
+.fr h4{font-size:17px; font-weight:700; margin-bottom:6px}
+.fr p{font-size:15.5px; color:var(--violet-soft)}
+
+/* ---------- Scope / CTA ---------- */
+.scope{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+@media(max-width:820px){.scope{grid-template-columns:1fr}}
+.cta{
+  background:var(--plum); border-radius:var(--r-xl); color:#fff;
+  padding:clamp(38px,6vw,72px); text-align:center; box-shadow:var(--shadow-l);
+}
+.cta h2{color:#fff; font-size:clamp(28px,4.4vw,46px)}
+.cta p{color:#C7B8E0; max-width:52ch; margin:20px auto 0; font-size:17px}
+.cta-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:34px}
+.cta small{display:block; margin-top:22px; color:#8E7CAB; font-size:13px}
+
+footer{padding:44px 0 60px; border-top:1px solid var(--line); color:var(--violet-soft); font-size:14px}
+.foot{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center}
+
+/* ---------- Chatbot ---------- */
+#chat-fab{
+  position:fixed; bottom:24px; left:24px; z-index:80;
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  background:var(--plum); color:#fff; border:none; border-radius:100px;
+  padding:15px 22px; font-family:'Heebo',sans-serif; font-size:15px; font-weight:500;
+  box-shadow:0 14px 34px rgba(26,11,46,.24); transition:.3s var(--ease);
+}
+#chat-fab:hover{background:var(--fuchsia); transform:translateY(-2px)}
+#chat-fab .pulse{width:8px; height:8px; border-radius:50%; background:var(--fuchsia)}
+#chat-fab:hover .pulse{background:#fff}
+#chat-panel{
+  position:fixed; bottom:24px; left:24px; z-index:90;
+  width:min(420px,calc(100vw - 32px)); height:min(620px,calc(100vh - 48px));
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r-l);
+  box-shadow:var(--shadow-l); display:none; flex-direction:column; overflow:hidden;
+}
+#chat-panel.open{display:flex; animation:pop .32s var(--ease)}
+.chat-head{padding:18px 20px; border-bottom:1px solid var(--line-soft); display:flex; justify-content:space-between; align-items:center; gap:12px}
+.chat-head h4{font-size:17px; font-weight:700}
+.chat-head span{font-size:12.5px; color:var(--violet-soft); display:block; margin-top:2px}
+.chat-x{background:none; border:none; cursor:pointer; font-size:22px; color:var(--violet-soft); line-height:1; padding:4px 6px; border-radius:8px}
+.chat-x:hover{background:var(--bg-2); color:var(--plum)}
+#chat-log{flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:14px}
+.msg{max-width:88%; font-size:15px; line-height:1.7; padding:13px 17px; border-radius:16px; white-space:pre-wrap}
+.msg.bot{background:var(--bg-2); color:var(--plum); border-end-start-radius:5px; align-self:flex-start}
+.msg.me{background:var(--plum); color:#fff; border-end-end-radius:5px; align-self:flex-end}
+.msg.bot a{color:var(--fuchsia)}
+.suggest{display:flex; flex-wrap:wrap; gap:7px; padding:0 20px 14px}
+.suggest button{
+  background:var(--card); border:1px solid var(--line); border-radius:100px;
+  padding:8px 14px; font-family:'Heebo',sans-serif; font-size:13.5px; color:var(--violet-soft);
+  cursor:pointer; transition:.25s var(--ease);
+}
+.suggest button:hover{border-color:var(--fuchsia); color:var(--plum)}
+.chat-in{display:flex; gap:9px; padding:14px 16px; border-top:1px solid var(--line-soft); background:var(--bg)}
+.chat-in input{
+  flex:1; border:1px solid var(--line); border-radius:100px; padding:12px 18px;
+  font-family:'Heebo',sans-serif; font-size:15px; background:var(--card); color:var(--plum); outline:none;
+}
+.chat-in input:focus{border-color:var(--violet)}
+.chat-in button{
+  border:none; background:var(--plum); color:#fff; width:46px; border-radius:50%;
+  cursor:pointer; font-size:17px; transition:.25s var(--ease); flex:0 0 46px;
+}
+.chat-in button:hover{background:var(--fuchsia)}
+.typing{display:flex; gap:5px; align-self:flex-start; padding:15px 18px; background:var(--bg-2); border-radius:16px; border-end-start-radius:5px}
+.typing i{width:6px; height:6px; border-radius:50%; background:var(--violet); animation:bl 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.18s} .typing i:nth-child(3){animation-delay:.36s}
+@keyframes bl{0%,60%,100%{opacity:.28} 30%{opacity:1}}
+
+
+.bridge{
+  display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r-l);
+  padding:28px 32px; margin-bottom:16px; box-shadow:var(--shadow-s);
+}
+.bridge h3{font-size:21px; font-weight:700; margin-bottom:7px}
+.bridge p{font-size:15.5px; color:var(--violet-soft); max-width:62ch}
+.bridge .k{font-size:12px; letter-spacing:.12em; color:var(--fuchsia); display:block; margin-bottom:12px}
+@media(max-width:760px){.bridge{grid-template-columns:1fr}}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0; transform:translateY(22px); transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.rv.in{opacity:1; transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important; transition-duration:.01ms!important}
+  .rv{opacity:1; transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="has-header">
+<div id="progress"></div>
+
+<a href="/index.html" class="home-link">חזרה לדף הבית <span aria-hidden="true">←</span></a>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">Multi<i>brawn</i></a>
+    <nav class="nav-links">
+      <a href="#ציר">ציר השבת</a>
+      <a href="#אנטומיה">ממה זה בנוי</a>
+      <a href="#כסף">איפה הכסף נעלם</a>
+      <a href="#שוכחים">מה שוכחים</a>
+      <a href="#אנשים">האנשים</a>
+    </nav>
+    <a href="#סיום" class="btn btn-primary btn-sm">קבלו הצעה <span class="ar">←</span></a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero wrap" id="top">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">מדריך Multibrawn · שבת חתן</div>
+      <h1>
+        25 שעות
+        <span class="thin">שאי אפשר לדחות</span>
+      </h1>
+      <p class="lead">
+        שבת חתן היא האירוע היחיד שבו השעון לא מחכה לכם. אי אפשר לאחר בחצי שעה, אי אפשר להזמין באמצע,
+        ואי אפשר לתקן ביום ראשון. המדריך הזה עובר על השבת שעה־שעה — מה קורה בכל חלק, מה כל חלק עולה,
+        ואיפה בדיוק נשרף הכסף.
+      </p>
+      <div class="hero-actions">
+        <a href="#ציר" class="btn btn-primary">התחילו לקרוא <span class="ar">←</span></a>
+        <a href="#סיום" class="btn btn-ghost">רוצים שנארגן לכם</a>
+      </div>
+      <p class="hero-note">קריאה של 9 דקות · ללא עלות · מבוסס על עבודה מול מתחמים וספקים בפועל</p>
+    </div>
+
+    <div class="stat-stack">
+      <div class="stat">
+        <b>3 סעודות</b>
+        <span>ליל שבת, סעודת צהריים וסעודה שלישית — כולן ביום אחד, כולן מבושלות מראש</span>
+      </div>
+      <div class="stat">
+        <b>2 משפחות</b>
+        <span>שמתארחות יחד לראשונה, בדרך כלל בלי חלוקת תפקידים כתובה</span>
+      </div>
+      <div class="stat accent">
+        <b>0 אפשרויות</b>
+        <span>לתקן משהו אחרי כניסת השבת. מה שלא הגיע עד שקיעה — לא יגיע</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signature: לוח השבת -->
+  <div class="band">
+    <div class="band-head">
+      <h3>לוח השבת</h3>
+      <em>מסומן בורוד — התחנות שבהן הכי הרבה משפחות נתקעות</em>
+    </div>
+    <div class="band-track">
+      <div class="band-line"></div>
+      <div class="band-dots" id="band">
+        <div class="band-dot"><span class="d"></span><span class="t">הגעה<br>ושיבוץ חדרים</span></div>
+        <div class="band-dot hot"><span class="d"></span><span class="t">כניסת שבת<br>דדליין קשיח</span></div>
+        <div class="band-dot"><span class="d"></span><span class="t">קבלת שבת<br>וסעודת ליל שישי</span></div>
+        <div class="band-dot hot"><span class="d"></span><span class="t">הלילה<br>שאין לו תוכנית</span></div>
+        <div class="band-dot"><span class="d"></span><span class="t">שחרית<br>והעלייה לתורה</span></div>
+        <div class="band-dot"><span class="d"></span><span class="t">קידושא<br>רבא</span></div>
+        <div class="band-dot hot"><span class="d"></span><span class="t">סעודת<br>שבת</span></div>
+        <div class="band-dot"><span class="d"></span><span class="t">מנוחה<br>ושיעור</span></div>
+        <div class="band-dot"><span class="d"></span><span class="t">סעודה<br>שלישית</span></div>
+        <div class="band-dot hot"><span class="d"></span><span class="t">הבדלה<br>ומוצ״ש</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ציר השבת ===================== -->
+<section id="ציר">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">פרק ראשון</div>
+      <h2>מה באמת קורה בכל שעה</h2>
+      <p class="lead">
+        רוב המשפחות מתכננות שתי נקודות: את הסעודה הגדולה ואת העלייה לתורה. השאר קורה מעצמו —
+        ושם בדיוק נופלים הדברים. זה הציר המלא.
+      </p>
+    </div>
+
+    <div class="tl" id="timeline">
+      <div class="tl-fill" id="tlfill"></div>
+
+      <div class="tl-item rv">
+        <div class="tl-hour">יום שישי · 13:00–16:00</div>
+        <h3>הגעה, מפתחות ושיבוץ חדרים</h3>
+        <p>האורחים מגיעים בגלים, לא ביחד. מישהו צריך לעמוד בכניסה עם רשימה, לחלק מפתחות ולהגיד לכל משפחה לאן ללכת. אם אין רשימה כתובה מראש — השיבוץ נעשה בעל פה, ומישהו תמיד יישאר עם החדר הקטן ליד המטבח.</p>
+        <div class="tag">שוכחים: <b>מי מקבל איזה חדר</b> — ולמה</div>
+      </div>
+
+      <div class="tl-item rv pin">
+        <div class="tl-hour">יום שישי · שעה לפני השקיעה</div>
+        <h3>כניסת שבת — הדדליין היחיד שלא זז</h3>
+        <p>זו הנקודה שמארגנת את כל התכנון לאחור. פלטות ומיחמים דולקים, תאורה מכוונת, מקררים במצב שבת, ספקים יצאו מהשטח, וכל מה שלא הגיע — פשוט לא יהיה. משפחות רבות מתכננות את הלוגיסטיקה קדימה מהבוקר, במקום לאחור מהשקיעה.</p>
+        <div class="tag">הכלל: <b>כל ספק מתוזמן לפחות שעתיים לפני הנרות</b></div>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-hour">ליל שישי · 19:00–21:30</div>
+        <h3>קבלת שבת וסעודת ליל שבת</h3>
+        <p>הערב הראשון קובע את הטון של כל השבת. כאן שתי המשפחות נפגשות בפעם הראשונה סביב שולחן אחד — ולרוב זו גם הפעם היחידה שכולם באמת יושבים יחד. ההושבה בערב הזה חשובה יותר מההושבה בחתונה עצמה.</p>
+        <div class="tag">שוכחים: <b>מי מברך, מי מקדש, מי אומר מילה</b></div>
+      </div>
+
+      <div class="tl-item rv pin">
+        <div class="tl-hour">ליל שישי · 22:30–01:30</div>
+        <h3>הלילה שאין לו תוכנית</h3>
+        <p>ההורים הולכים לישון, והצעירים נשארים. בלי מוזיקה, בלי מסכים ובלי כיבוד — הם יתפזרו לחדרים תוך חצי שעה, ואת השעה הכי טובה של השבת תפספסו. כמה קנקנים, פיצוחים ופינת ישיבה מוארת עושים כאן את כל ההבדל, ועולים כמעט כלום.</p>
+        <div class="tag">זה החלק ש<b>הכי זול לתקן והכי כואב לפספס</b></div>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-hour">שבת בבוקר · 08:00–11:00</div>
+        <h3>שחרית, העלייה לתורה וזריקת הסוכריות</h3>
+        <p>הרגע שכל השבת נקראת על שמו. צריך לוודא מראש מול בית הכנסת או המתחם: ספר תורה כשר ועמוד, בעל קורא, גבאי שמכיר את הסדר, ומספיק סוכריות שנקנו לפני שבת. אם התפילה מתקיימת במתחם ולא בבית כנסת קבוע — צריך גם מניין מובטח.</p>
+        <div class="tag">שוכחים: <b>בעל קורא</b> — ומגלים את זה בבוקר</div>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-hour">שבת · מיד אחרי התפילה</div>
+        <h3>קידושא רבא</h3>
+        <p>הקידוש שאחרי התפילה הוא האירוע החברתי של הבוקר, והוא לא סעודה. מספיק דגים, קוגל, שתייה ומאפים — אבל הוא כן דורש הגשה נפרדת, שולחנות נפרדים ולפעמים חלל אחר לגמרי מזה של הסעודה. משפחות רבות לא מתמחרות אותו בכלל.</p>
+        <div class="tag">בתמחור: <b>סעיף נפרד, לא חלק מהסעודה</b></div>
+      </div>
+
+      <div class="tl-item rv pin">
+        <div class="tl-hour">שבת · 12:30–15:00</div>
+        <h3>סעודת שבת — האירוע המרכזי</h3>
+        <p>הסעודה הגדולה, עם כל האורחים, כל המנות והברכות. כאן מתרכז החלק הארי של תקציב הקייטרינג, וכאן גם נמצא הפער הגדול ביותר בין הצעת מחיר להצעת מחיר: אותה תפריט בדיוק, בהגשה חד־פעמית מול הגשה בכלים — פערים משמעותיים.</p>
+        <div class="tag">כאן יושב <b>ההבדל הגדול בין הצעות מחיר</b></div>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-hour">שבת · 15:00–18:00</div>
+        <h3>מנוחה, שיעור וזמן חופשי</h3>
+        <p>שעות שקטות שנראות כמו "זמן פנוי", ובפועל הן החלק שבו האורחים מרגישים אם חשבו עליהם. משחקים לילדים, מקום ישיבה מוצל, ולפעמים שיעור קצר של חצי שעה שנותן לשבת את המשמעות שבשבילה התכנסו.</p>
+        <div class="tag">שוכחים: <b>מה הילדים עושים בשעות האלה</b></div>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-hour">שבת · לפני השקיעה</div>
+        <h3>סעודה שלישית</h3>
+        <p>הסעודה הקטנה והאינטימית ביותר, ולרוב זו שבה נאמרים הדברים האמיתיים. היא קלה להכנה — אבל דורשת החלטה מראש: מי מדבר, ובאיזה סדר. בלי החלטה כזאת, הרגע המשמעותי של השבת פשוט לא קורה.</p>
+        <div class="tag">הרגע ש<b>הכי הרבה משפחות מפספסות</b></div>
+      </div>
+
+      <div class="tl-item rv pin">
+        <div class="tl-hour">מוצאי שבת · אחרי צאת הכוכבים</div>
+        <h3>הבדלה ומוצ״ש</h3>
+        <p>ברגע שהשבת יוצאת נפתחות כל האפשרויות שהיו סגורות: הגברה, קלידן, זמר, צילום ווידאו. זה גם החלק שהכי מרבים לשכוח לתמחר — שעות נוספות של צוות, פינוי החדרים, ניקיון ולפעמים תשלום על שעות מעבר במתחם.</p>
+        <div class="tag">בתמחור: <b>הגברה, שעות צוות ופינוי</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== אנטומיה ===================== -->
+<section class="tinted" id="אנטומיה">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">פרק שני</div>
+      <h2>ממה שבת חתן בנויה</h2>
+      <p class="lead">שישה חלקים. כל אחד מהם נסגר מול גורם אחר, בלוח זמנים אחר. מי שמתייחס לזה כאל הזמנה אחת גדולה — משלם על זה.</p>
+    </div>
+
+    <div class="bento">
+      <div class="cell c-2 rv">
+        <span class="k">01 · הבסיס</span>
+        <h3>המתחם</h3>
+        <p>הבחירה שקובעת את כל השאר: כמה חדרים, איזה אזור, האם יש בית כנסת בתוך המתחם, והאם חדר האוכל פרטי לקבוצה או משותף. מתחם מלא בבלעדיות מתנהג אחרת לגמרי ממתחם שמתחלק בין קבוצות.</p>
+        <ul class="cell-list">
+          <li>בלעדיות מלאה מול אכלוס חלקי</li>
+          <li>מרחק מבית הכנסת ברגל</li>
+          <li>נגישות להורים מבוגרים</li>
+          <li>מתחם סגור, בריכה, הפרדה</li>
+        </ul>
+      </div>
+
+      <div class="cell c-2 rv">
+        <span class="k">02 · לא מתפשרים</span>
+        <h3>כשרות ותפילה</h3>
+        <p>הסעיף שלא סובל אי־הבנות, כי הוא נוגע ישירות ביכולת של חלק מהאורחים לאכול ולהתפלל. רמת הכשרות ונוסח התפילה נסגרים בכתב מול המתחם — לא בשיחת טלפון.</p>
+        <ul class="cell-list">
+          <li>רגילה · מהדרין · בד״ץ</li>
+          <li>אשכנז · ספרד · עדות המזרח</li>
+          <li>ספר תורה, עמוד, בעל קורא</li>
+          <li>משגיח צמוד או תעודת מתחם</li>
+        </ul>
+      </div>
+
+      <div class="cell c-2 rv">
+        <span class="k">03 · רוב התקציב</span>
+        <h3>קייטרינג</h3>
+        <p>שלוש סעודות וקידוש, כולם מבושלים ומוגשים בתוך מסגרת שבת. השאלה שקובעת את המחיר היא לא התפריט — אלא ההגשה: חד־פעמי איכותי, או חרסינה, סכו״ם, מפות בד וזכוכית.</p>
+      </div>
+
+      <div class="cell c-2 rv">
+        <span class="k">04 · מה שנשאר</span>
+        <h3>מתנות ומיתוג · MultiGive</h3>
+        <p>מתנה לחדר עם שם החתן והכלה, ברכונים, כיפות, שילוט בכניסה, שי לפרידה. זה החלק היחיד מהשבת שהאורחים לוקחים איתם הביתה — וגם הראשון שנמחק כשאין לו תקציב נפרד.</p>
+      </div>
+
+      <div class="cell c-3 rv">
+        <span class="k">05 · פרטני</span>
+        <h3>ספקים ושירותים</h3>
+        <p>כל אחד מהם מגיע בזמן אחר, נסגר בחוזה אחר ודורש תיאום מול המתחם. ככל שמוסיפים ספקים, כך גדל הצורך בגורם אחד שמחזיק את התמונה המלאה.</p>
+        <ul class="cell-list" style="grid-template-columns:repeat(2,1fr); display:grid">
+          <li>חזן, זמר או פייטן</li>
+          <li>מלצרים ומנהל אירוע</li>
+          <li>שמרטפות לילדים</li>
+          <li>צלם שומר שבת</li>
+          <li>הסעות לאורחים</li>
+          <li>קלידן והגברה למוצ״ש</li>
+        </ul>
+      </div>
+
+      <div class="cell dark rv">
+        <span class="k">06 · המשתנה</span>
+        <h3>האורחים</h3>
+        <p>מספר האורחים לא רק מכפיל מנות — הוא משנה את המתחם, את מספר החדרים, את סוג ההגשה ואת הצורך בהסעות. שינוי של עשרה אנשים יכול לשנות את כל ההצעה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== כסף ===================== -->
+<section id="כסף">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">פרק שלישי</div>
+      <h2>איפה הכסף נעלם</h2>
+      <p class="lead">
+        חמישה מקומות שבהם שתי הצעות שנראות זהות מתגלות כרחוקות זו מזו. מסודר לפי גודל הפער שהן יוצרות.
+      </p>
+    </div>
+
+    <div class="money">
+      <div class="leak rv">
+        <div class="gap-label g-3">פער ענק<div class="bars"><i></i><i></i><i></i></div></div>
+        <div>
+          <h3>סוג ההגשה בקייטרינג</h3>
+          <p>אותו תפריט בדיוק, שתי הצעות רחוקות. חד־פעמי איכותי מול הגשה בכלים — חרסינה, סכו״ם, מפות בד וכוסות זכוכית. זה גם מחייב יותר מלצרים ויותר שעות עבודה.</p>
+        </div>
+        <div class="num">לשאול: באיזו הגשה?</div>
+      </div>
+
+      <div class="leak rv">
+        <div class="gap-label g-3">פער ענק<div class="bars"><i></i><i></i><i></i></div></div>
+        <div>
+          <h3>חדרים שמשלמים עליהם ולא מאכלסים</h3>
+          <p>מתחמים רבים נסגרים בבלעדיות — כלומר על כל החדרים, גם אם הבאתם 70% מהתפוסה. לפני שסוגרים, צריך לדעת אם מדובר במחיר לחדר או במחיר למתחם, ומה קורה אם מספר האורחים משתנה.</p>
+        </div>
+        <div class="num">לשאול: לחדר או למתחם?</div>
+      </div>
+
+      <div class="leak rv">
+        <div class="gap-label g-2">פער גדול<div class="bars"><i></i><i></i><i></i></div></div>
+        <div>
+          <h3>תוספות השבת שלא נכללו בהצעה</h3>
+          <p>משגיח כשרות, ספר תורה ועמוד, פלטות ומיחמים, מנעולי שבת, תאורה, עירוב. כל אחד מהם נראה קטן בנפרד, וביחד הם סעיף שלם שלא היה בטבלה.</p>
+        </div>
+        <div class="num">לשאול: מה לא כלול?</div>
+      </div>
+
+      <div class="leak rv">
+        <div class="gap-label g-2">פער גדול<div class="bars"><i></i><i></i><i></i></div></div>
+        <div>
+          <h3>מוצאי שבת</h3>
+          <p>הגברה, קלידן, שעות צוות נוספות, ניקיון ולעיתים תשלום על שעת עזיבה מאוחרת. השבת נגמרה — התקציב לא.</p>
+        </div>
+        <div class="num">לשאול: עד איזו שעה?</div>
+      </div>
+
+      <div class="leak rv">
+        <div class="gap-label g-1">פער בינוני<div class="bars"><i></i><i></i><i></i></div></div>
+        <div>
+          <h3>מתנות ומיתוג בלי תקציב נפרד</h3>
+          <p>כשהמתנות יוצאות מאותו סל של המתחם, הן תמיד מפסידות. תקציב נפרד — קטן ככל שיהיה — הוא ההבדל בין מזכרת עם שם החתן והכלה לבין שום דבר.</p>
+        </div>
+        <div class="num">להפריד מראש</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== שוכחים ===================== -->
+<section class="tinted" id="שוכחים">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">פרק רביעי</div>
+      <h2>מה שוכחים להזמין</h2>
+      <p class="lead">אף אחד מהפריטים האלה לא יקר. כולם נזכרים בהם ביום שישי בצהריים, כשכבר מאוחר מדי להשיג אותם.</p>
+    </div>
+
+    <div class="chip-groups">
+      <div class="rv">
+        <h4>תפילה וכשרות</h4>
+        <div class="chips">
+          <span class="chip">ספר תורה</span><span class="chip">עמוד ושולחן</span><span class="chip">בעל קורא</span>
+          <span class="chip">גבאי שמכיר את הסדר</span><span class="chip">סידורים וחומשים</span><span class="chip">ברכונים וזמירונים</span>
+          <span class="chip">טלית לחתן</span><span class="chip">בירור עירוב</span><span class="chip">מקווה באזור</span>
+          <span class="chip">משגיח כשרות</span>
+        </div>
+      </div>
+      <div class="rv">
+        <h4>לוגיסטיקה של שבת</h4>
+        <div class="chips">
+          <span class="chip">פלטות ומיחמים</span><span class="chip">מקרר במצב שבת</span><span class="chip">תאורה מכוונת מראש</span>
+          <span class="chip">רשימת שיבוץ חדרים</span><span class="chip">שילוט הכוונה</span><span class="chip">מזרנים ומצעים נוספים</span>
+          <span class="chip">ערכת עזרה ראשונה</span><span class="chip">הסעות</span><span class="chip">חניה לאורחים מבוגרים</span>
+          <span class="chip">מפתחות מסודרים לפי משפחה</span>
+        </div>
+      </div>
+      <div class="rv">
+        <h4>אנשים ורגעים</h4>
+        <div class="chips">
+          <span class="chip">סוכריות לזריקה</span><span class="chip">כיבוד לילדים</span><span class="chip">שמרטפות</span>
+          <span class="chip">משחקים לשעות המנוחה</span><span class="chip">פיצוחים ללילה</span><span class="chip">שי מוגבה להורים</span>
+          <span class="chip">מתנה לחדר</span><span class="chip">כרטיס ברכה אישי</span><span class="chip">צלם שומר שבת</span>
+          <span class="chip">מי מדבר ובאיזה סדר</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== אנשים ===================== -->
+<section id="אנשים">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">פרק חמישי</div>
+      <h2>מי יושב סביב השולחן</h2>
+      <p class="lead">
+        הלוגיסטיקה נסגרת מול ספקים. מה שבאמת קובע איך השבת מרגישה זה מה שקורה בין האנשים —
+        וזה כמעט תמיד צפוי מראש.
+      </p>
+    </div>
+
+    <div class="people">
+      <div class="person rv">
+        <h3>אמא של החתן</h3>
+        <div class="want">רוצה שיהיה מושלם</div>
+        <p>זו השבת שלה במובן הכי עמוק, והיא זו שתישפט על כל פרט. היא תרצה להיות בכל מקום בו זמנית — ולכן היא זו שהכי חשוב שיהיה לה מישהו שמחזיק את הביצוע במקומה.</p>
+      </div>
+      <div class="person rv">
+        <h3>אמא של הכלה</h3>
+        <div class="want">רוצה מקום ברור</div>
+        <p>היא אורחת בשבת שאינה שלה, אבל היא לא באמת אורחת. בלי תפקיד מוגדר מראש היא תרגיש מיותרת או תיכנס לתפקיד שלא ביקשו ממנה — ושתי האפשרויות מייצרות מתח.</p>
+      </div>
+      <div class="person rv">
+        <h3>הכלה</h3>
+        <div class="want">רוצה להיות מוזמנת</div>
+        <p>היא במרכז תשומת הלב אצל משפחה שהיא עדיין לומדת. שאלה אחת שנשאלת מראש — מה חשוב לך שיהיה — משנה לגמרי את האופן שבו היא חווה את הסוף שבוע הזה.</p>
+      </div>
+      <div class="person rv">
+        <h3>החתן</h3>
+        <div class="want">רוצה שלא ינהלו אותו</div>
+        <p>העלייה לתורה היא שלו, אבל את כל השאר מנהלים סביבו. הוא צריך לדעת מראש רק שני דברים: מתי הוא נדרש להיות במקום מסוים, ומתי הוא חופשי.</p>
+      </div>
+      <div class="person rv">
+        <h3>הדודה שמעירה</h3>
+        <div class="want">רוצה להישמע</div>
+        <p>יש אחת בכל משפחה. היא תעיר על ההושבה, על האוכל ועל החדר. הדרך היחידה לנטרל את זה היא לתת לה תפקיד קטן ואמיתי לפני שהיא מוצאת לעצמה אחד.</p>
+      </div>
+      <div class="person rv">
+        <h3>הילדים</h3>
+        <div class="want">רוצים מה לעשות</div>
+        <p>בשבת בלי מסכים, ילדים משועממים הם הגורם מספר אחת למתח בין המבוגרים. שמרטפות לשעתיים בצהריים היא ההוצאה עם ההחזר הגבוה ביותר בכל השבת.</p>
+      </div>
+    </div>
+
+    <div class="friction" style="margin-top:34px">
+      <div class="fr rv">
+        <h4>חלוקת החדרים</h4>
+        <p>החיכוך הראשון, והוא קורה עוד לפני שהשבת נכנסה. רשימה כתובה מראש, עם שם על כל מפתח, מונעת את רוב זה.</p>
+      </div>
+      <div class="fr rv">
+        <h4>שתי אמהות במטבח אחד</h4>
+        <p>גם כשיש קייטרינג, שתיהן ייכנסו למטבח. חלוקת תחומים מראש — מי אחראית על מה — עדיפה על נימוס.</p>
+      </div>
+      <div class="fr rv">
+        <h4>ההושבה בסעודה</h4>
+        <p>מי יושב ליד מי בליל שבת נזכר שנים אחר כך. זו לא פורמליות מיותרת — זו הודעה על מעמד.</p>
+      </div>
+      <div class="fr rv">
+        <h4>השעה המאוחרת בליל שישי</h4>
+        <p>הצעירים נשארים ערים ואין שום דבר שמחזיק אותם יחד. פינת ישיבה, קנקנים ופיצוחים — וזו הופכת לשעה הכי טובה בשבת.</p>
+      </div>
+      <div class="fr rv">
+        <h4>הרגע המשמעותי שלא קורה</h4>
+        <p>כולם מתכננים אוכל, אף אחד לא מתכנן את הרגע. מי אומר משהו, מתי ולמי — צריך להיסגר לפני שבת, לא סביב השולחן.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== סיום ===================== -->
+<section class="tinted" id="סיום">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">לסיום</div>
+      <h2>עד כאן המדריך</h2>
+      <p class="lead">מכאן זה כבר ביצוע — וזה מה שאנחנו עושים.</p>
+    </div>
+
+    <div class="scope" style="margin-bottom:34px">
+      <div class="cell rv">
+        <span class="k">מה קיבלתם כאן</span>
+        <h3>את התמונה המלאה</h3>
+        <ul class="cell-list">
+          <li>מה קורה בכל שעה של השבת</li>
+          <li>ממה השבת בנויה ומה נסגר מול מי</li>
+          <li>איפה נוצרים הפערים בין הצעות מחיר</li>
+          <li>מה שוכחים להזמין ומה קורה בין האנשים</li>
+        </ul>
+      </div>
+      <div class="cell dark rv">
+        <span class="k">מה אנחנו עושים בשבילכם</span>
+        <h3>את העבודה עצמה</h3>
+        <ul class="cell-list">
+          <li>איתור מתחמים שעונים בדיוק לדרישות שלכם</li>
+          <li>בדיקת זמינות בתאריך ובתאריך החלופי</li>
+          <li>מו״מ מול המתחמים והספקים — בשמכם</li>
+          <li>תשובה מסודרת עם הצעות להשוואה</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="bridge rv">
+      <div>
+        <span class="k">מתכננים בעצמכם?</span>
+        <h3>המדריך התפעולי המלא</h3>
+        <p>המדריך שקראתם מסביר מה קורה ולמה. המדריך התפעולי הוא הצד השני: איך מבצעים — סדר העבודה שלב אחר שלב, מה סוגרים בכל שלב, ומה המלכודת בכל אחד מהם.</p>
+      </div>
+      <a href="#" data-buy-guide class="btn btn-primary">למדריך התפעולי <span class="ar">←</span></a>
+    </div>
+
+    <div class="cta rv">
+      <h2>ספרו לנו מה אתם מחפשים</h2>
+      <p>
+        כמה תשובות קצרות על התאריך, מספר האורחים, רמת הכשרות והתקציב — ונחזור אליכם עם הצעות מדויקות,
+        לא רשימות אקראיות. אינכם משלמים עמלה על המתחם.
+      </p>
+      <div class="cta-actions">
+        <a href="#" data-form class="btn btn-fuchsia">למילוי השאלון <span class="ar">←</span></a>
+        <a href="#" data-whatsapp class="btn btn-outline" target="_blank" rel="noopener">דברו איתנו בוואטסאפ</a>
+      </div>
+      <small>Multibrawn · שבתות חתן · מתחמי אירוח · MultiGive</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© Multibrawn · המדריך לשבת חתן</span>
+    <span>יש שאלה על משהו במדריך? לחצו על הכפתור למטה</span>
+  </div>
+</footer>
+
+<!-- ===================== CHATBOT ===================== -->
+<button id="chat-fab" aria-label="פתיחת שאלות על המדריך">
+  <span class="pulse"></span> שאלה על המדריך?
+</button>
+
+<div id="chat-panel" role="dialog" aria-label="שאלות על מדריך שבת חתן">
+  <div class="chat-head">
+    <div>
+      <h4>שואלים את המדריך</h4>
+      <span>עונה על מה שכתוב כאן. לתכנון עצמו — נדבר איתכם.</span>
+    </div>
+    <button class="chat-x" id="chat-x" aria-label="סגירה">×</button>
+  </div>
+  <div id="chat-log">
+    <div class="msg bot">היי 👋 אני כאן בשביל השאלות על המדריך — מה קורה בכל שעה, ממה השבת בנויה, איפה נשרף כסף ומה שוכחים להזמין.
+
+תשאלו בחופשיות, או תבחרו משהו מלמטה.</div>
+  </div>
+  <div class="suggest" id="suggest"></div>
+  <div class="chat-in">
+    <input id="chat-input" type="text" placeholder="מה רציתם לשאול?" autocomplete="off">
+    <button id="chat-send" aria-label="שליחה">←</button>
+  </div>
+</div>
+
+<script type="module">
+/* ============================================================
+   קונפיגורציה
+   ============================================================ */
+const CONFIG = { API_ENDPOINT: '/.netlify/functions/chat' };
+
+/* קישורים ומספרים — מ-constants.js בלבד */
+import('/assets/constants.js').then(({ waLink, LINKS, MESSAGES, buyGuideHref })=>{
+  CONFIG.WHATSAPP = waLink(MESSAGES.guideQuestion);
+  document.querySelectorAll('[data-form]').forEach(a=> a.href = LINKS.form);
+  document.querySelectorAll('[data-whatsapp]').forEach(a=> a.href = waLink(MESSAGES.help));
+  document.querySelectorAll('[data-buy-guide]').forEach(a=> a.href = buyGuideHref());
+  document.querySelectorAll('[data-home]').forEach(a=> a.href = LINKS.home);
+});
+
+/* ---------- Reveal on scroll ---------- */
+const io = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach((el,i)=>{ el.style.transitionDelay = (i%4)*70 + 'ms'; io.observe(el); });
+
+/* ---------- Hero band load sequence ---------- */
+document.querySelectorAll('#band .band-dot').forEach((d,i)=>{
+  d.style.animation = `pop .6s cubic-bezier(.22,1,.36,1) ${300 + i*90}ms forwards`;
+});
+
+/* ---------- Scroll progress + timeline fill ---------- */
+const prog = document.getElementById('progress');
+const tl = document.getElementById('timeline');
+const tlFill = document.getElementById('tlfill');
+const items = [...document.querySelectorAll('.tl-item')];
+
+function onScroll(){
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100) + '%';
+
+  if(tl){
+    const r = tl.getBoundingClientRect();
+    const mid = window.innerHeight*0.5;
+    const raw = (mid - r.top) / r.height;
+    tlFill.style.height = Math.max(0, Math.min(1, raw))*100 + '%';
+    items.forEach(it=>{
+      const b = it.getBoundingClientRect();
+      it.classList.toggle('on', b.top < mid && b.bottom > 0);
+    });
+  }
+}
+addEventListener('scroll', onScroll, {passive:true});
+addEventListener('resize', onScroll);
+onScroll();
+
+/* --- תשובות מוכנות לצ'יפים: מיידיות, בלי קריאת רשת --- */
+const QUICK = [
+  {q:'מה הכי משפיע על המחיר?',
+   a:'שני דברים. הראשון — סוג ההגשה בקייטרינג: אותו תפריט בדיוק בחד־פעמי איכותי מול הגשה בכלים (חרסינה, סכו״ם, מפות בד וזכוכית) מייצר את הפער הגדול ביותר בין הצעה להצעה.\n\nהשני — האם המחיר הוא לחדר או למתחם שלם. מתחם בבלעדיות גובה על כל החדרים, גם אם הבאתם 70% תפוסה.'},
+  {q:'מה הכי שוכחים?',
+   a:'בעל קורא, ספר תורה ועמוד, וסוכריות לזריקה — מגלים את זה בבוקר של שבת.\n\nובצד הפחות מדובר: מה הילדים עושים בשעות המנוחה, ומי אומר משהו בסעודה שלישית. שני הדברים האלה כמעט תמיד לא מתוכננים.'},
+  {q:'מותרת מוזיקה בשבת חתן?',
+   a:'בשבת עצמה — שירה בלבד. חזן, זמר או פייטן.\n\nקלידן והגברה אפשריים רק לפני כניסת שבת או במוצאי שבת. בגלל זה מוצ״ש הוא סעיף תמחור בפני עצמו: הגברה, שעות צוות נוספות וניקיון.'},
+  {q:'מה קורה בליל שישי המאוחר?',
+   a:'ההורים הולכים לישון והצעירים נשארים — וזאת השעה הכי טובה בשבת, אם מישהו חשב עליה.\n\nבלי פינת ישיבה מוארת, קנקנים ופיצוחים הם מתפזרים לחדרים תוך חצי שעה. זה החלק הכי זול לתקן והכי כואב לפספס.'},
+  {q:'איך מחלקים את החדרים בלי ריב?',
+   a:'ברשימה כתובה מראש, עם שם על כל מפתח. זה החיכוך הראשון והוא קורה עוד לפני כניסת השבת.\n\nכשהשיבוץ נעשה בעל פה בכניסה — מישהו תמיד נשאר עם החדר הקטן ליד המטבח, וזה נזכר.'},
+  {q:'מה אתם עושים בשבילי?',
+   a:'מאתרים מתחמים שעונים בדיוק לדרישות שלכם, בודקים זמינות בתאריך ובחלופי, מנהלים את המו״מ מול המתחמים והספקים בשמכם, וחוזרים עם הצעות מסודרות להשוואה.\n\nואתם לא משלמים עמלה על המתחם — היא נגבית מהמתחם.'}
+];
+
+const fab = document.getElementById('chat-fab');
+const panel = document.getElementById('chat-panel');
+const log = document.getElementById('chat-log');
+const input = document.getElementById('chat-input');
+const sendBtn = document.getElementById('chat-send');
+const suggestBox = document.getElementById('suggest');
+let history = [];
+
+QUICK.forEach(item=>{
+  const b = document.createElement('button');
+  b.textContent = item.q;
+  b.onclick = ()=>{ addMsg(item.q,'me'); setTimeout(()=>addMsg(item.a,'bot'), 240); };
+  suggestBox.appendChild(b);
+});
+
+fab.onclick = ()=>{ panel.classList.add('open'); fab.style.display='none'; input.focus(); };
+document.getElementById('chat-x').onclick = ()=>{ panel.classList.remove('open'); fab.style.display='inline-flex'; };
+
+function addMsg(text, who){
+  const d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.textContent = text;
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+  return d;
+}
+function typing(){
+  const d = document.createElement('div');
+  d.className='typing'; d.innerHTML='<i></i><i></i><i></i>';
+  log.appendChild(d); log.scrollTop = log.scrollHeight;
+  return d;
+}
+
+/* שולחים לנתיב שרת פנימי (/api/guide-chat) — לא ישירות ל-Anthropic מהדפדפן.
+   הנתיב הזה עדיין לא קיים בסביבה זו; עד שיוגדר מפתח ושרת proxy,
+   הצ'אט ייפול בחזרה לקישור לוואטסאפ. */
+async function send(){
+  const q = input.value.trim();
+  if(!q) return;
+  input.value = '';
+  addMsg(q,'me');
+  history.push({role:'user', content:q});
+  const t = typing();
+
+  try{
+    const res = await fetch(CONFIG.API_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ messages: history.slice(-8) })
+    });
+    if(!res.ok) throw new Error('bad status');
+    const data = await res.json();
+    const text = (data.text || '').trim();
+    t.remove();
+    if(!text) throw new Error('empty');
+    addMsg(text,'bot');
+    history.push({role:'assistant', content:text});
+  }catch(e){
+    t.remove();
+    addMsg('לא הצלחתי להביא תשובה כרגע. אפשר לבחור אחת מהשאלות המוכנות למטה, או לכתוב לנו ישירות בוואטסאפ ונענה: ' + CONFIG.WHATSAPP, 'bot');
+  }
+}
+sendBtn.onclick = send;
+input.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
+</script>
+</body>
+</html>

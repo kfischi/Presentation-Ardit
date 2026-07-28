@@ -1,0 +1,191 @@
+/* ============================================================
+   Multibrawn · brand tokens
+   The single stylesheet every page loads. No other file defines
+   a colour, a font or a radius.
+   ============================================================ */
+
+:root {
+  --bg: #FBF8FF;
+  --bg-2: #F3ECFD;
+  --card: #FFFFFF;
+  --plum: #1A0B2E;
+  --violet-soft: #66557E;
+  --violet: #A06BFF;
+  --fuchsia: #FF0090;
+  --line: #E7DEF7;
+  --line-soft: #F0E9FB;
+
+  --shadow-s: 0 1px 2px rgba(26, 11, 46, .04), 0 4px 14px rgba(26, 11, 46, .05);
+  --shadow-m: 0 2px 4px rgba(26, 11, 46, .05), 0 16px 40px rgba(26, 11, 46, .08);
+  --shadow-l: 0 30px 70px rgba(26, 11, 46, .12);
+
+  --r-s: 10px;
+  --r-m: 16px;
+  --r-l: 24px;
+  --r-xl: 32px;
+
+  --gut: clamp(20px, 5vw, 64px);
+  --maxw: 1180px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--plum);
+  font-family: 'Heebo', system-ui, 'Segoe UI', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Frank Ruhl Libre', Georgia, serif;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+}
+
+p { margin: 0; }
+a { color: inherit; }
+img { max-width: 100%; }
+::selection { background: var(--violet); color: #fff; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+/* Dancing Script is an accent only — never body text, never a heading. */
+.script {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  font-family: 'Heebo', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: .3s var(--ease);
+  background: none;
+}
+
+.btn-primary { background: var(--plum); color: #fff; }
+.btn-primary:hover {
+  background: var(--fuchsia);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 0, 144, .26);
+}
+
+.btn-fuchsia { background: var(--fuchsia); color: #fff; }
+.btn-fuchsia:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(255, 0, 144, .36);
+}
+
+.btn-ghost {
+  border-color: var(--line);
+  color: var(--plum);
+  background: var(--card);
+}
+.btn-ghost:hover { border-color: var(--violet); color: var(--violet); }
+
+.btn-outline { border-color: rgba(255, 255, 255, .28); color: #fff; }
+.btn-outline:hover { border-color: #fff; background: rgba(255, 255, 255, .07); }
+
+.btn-sm { padding: 9px 18px; font-size: 14px; }
+.btn .ar { transition: transform .3s var(--ease); }
+.btn:hover .ar { transform: translateX(-4px); }
+
+/* ---------- Consistent back-to-home control ----------
+   Same position and same appearance on every page. */
+
+.home-link {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 9px 17px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--plum);
+  text-decoration: none;
+  box-shadow: var(--shadow-s);
+  transition: .25s var(--ease);
+}
+.home-link:hover { border-color: var(--fuchsia); color: var(--fuchsia); }
+
+/* Pages with a sticky header push it below. */
+.has-header .home-link { top: 76px; }
+
+/* ---------- Shared bits ---------- */
+
+.eyebrow {
+  font-family: 'Heebo', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  color: var(--violet-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  max-width: 120px;
+}
+
+.lead {
+  color: var(--violet-soft);
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.8;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-l);
+  box-shadow: var(--shadow-s);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fuchsia);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}

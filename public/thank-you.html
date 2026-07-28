@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>תודה על הרכישה · Multibrawn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/brand.css">
+<style>
+  body{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;}
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r-l);
+    padding:clamp(32px,5vw,44px) clamp(24px,4vw,36px); max-width:540px; width:100%; text-align:center;
+    box-shadow:var(--shadow-m);
+  }
+  .panel h1{font-size:clamp(24px,4vw,29px); font-weight:700; margin-bottom:12px}
+  .panel .lead{margin:0 0 28px}
+  .cta-row{margin:0 0 4px}
+  .note{
+    margin:26px 0 0; padding-top:20px; border-top:1px solid var(--line);
+    color:var(--violet-soft); font-size:14px; line-height:1.7;
+  }
+  .note a{color:var(--violet); text-decoration:none}
+  .note a:hover{text-decoration:underline}
+  .fallback{
+    background:var(--bg-2); border-radius:var(--r-s); padding:18px 20px;
+    color:var(--violet-soft); font-size:15px; line-height:1.8; margin:0 0 24px; text-align:start;
+  }
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+  <a href="/index.html" class="home-link">חזרה לדף הבית <span aria-hidden="true">←</span></a>
+
+  <div class="panel">
+    <h1>התשלום התקבל</h1>
+
+    <div id="with-link" hidden>
+      <p class="lead">המדריך התפעולי לשבת חתן מוכן ומחכה לך.</p>
+      <p class="cta-row"><a class="btn btn-fuchsia" id="guide-link" href="#">לפתיחת המדריך <span class="ar">←</span></a></p>
+      <p class="note">
+        שלחנו לך את הקישור גם במייל, כדי שיישאר שמור אצלך.<br>
+        לא הגיע? <a href="#" data-whatsapp>דברו איתנו בוואטסאפ</a>
+      </p>
+    </div>
+
+    <div id="without-link" hidden>
+      <p class="lead">תודה על הרכישה.</p>
+      <p class="fallback">
+        שלחנו את הקישור למדריך לכתובת המייל שלך — הוא אמור להגיע תוך דקה.
+        שווה להציץ גם בתיקיית הספאם.
+      </p>
+      <p class="cta-row"><a class="btn btn-fuchsia" href="#" data-whatsapp>דברו איתנו בוואטסאפ</a></p>
+    </div>
+  </div>
+
+<script type="module">
+  import { waLink, MESSAGES } from '/assets/constants.js';
+
+  document.querySelectorAll('[data-whatsapp]').forEach(a => {
+    a.href = waLink(MESSAGES.guideQuestion);
+  });
+
+  const params = new URLSearchParams(location.search);
+
+  // TODO(kfir): pin to the parameter GROW actually appends to the success URL.
+  const KEYS = ['id', 'transaction_id', 'transactionId', 'transactionToken', 'asmachta'];
+
+  let id = '';
+  for (const key of KEYS) {
+    const value = params.get(key);
+    if (value && value.trim()) { id = value.trim(); break; }
+  }
+
+  if (id) {
+    // The token is an HMAC held on the server, so the page passes the id alone
+    // and the guide function authorises it against the sales sheet.
+    let href = '/.netlify/functions/guide?id=' + encodeURIComponent(id);
+    const token = params.get('t');
+    if (token) href += '&t=' + encodeURIComponent(token);
+    document.getElementById('guide-link').href = href;
+    document.getElementById('with-link').hidden = false;
+  } else {
+    document.getElementById('without-link').hidden = false;
+  }
+</script>
+</body>
+</html>

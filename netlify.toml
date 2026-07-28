@@ -1,0 +1,48 @@
+# Static site — nothing to build.
+#
+# `publish` is deliberately a subdirectory rather than the repo root. Everything
+# inside the publish directory is served as a static file, so with publish = "."
+# the paid guide at netlify/functions/private/Guide.html would be downloadable
+# for free. Keeping the published tree separate makes that structurally
+# impossible instead of depending on a redirect rule staying correct.
+
+[build]
+  publish = "public"
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# esbuild only traces `require`d JavaScript. The guide is read at runtime via
+# fs, so it has to be declared explicitly or it never enters the bundle.
+[functions.guide]
+  included_files = ["netlify/functions/private/**"]
+
+# Anyone holding the old GitHub Pages link lands on the paid guide's entry
+# point rather than a dead page.
+[[redirects]]
+  from = "/Guide.html"
+  to = "/.netlify/functions/guide"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/guide.html"
+  to = "/free-guide.html"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/thank-you.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
