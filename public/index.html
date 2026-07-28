@@ -112,16 +112,21 @@
                         <h4 class="font-bold text-slate-800 text-xl">בדיקת חוזה VIP</h4>
                     </div>
                 </div>
-                <!-- ✅ כפתור מקושר למדריך 25 השלבים -->
-                <a href="Guide.html"
-                   style="background-color:#d946ef; text-decoration:none; display:block;"
-                   class="w-full py-6 rounded-full text-white font-black text-2xl text-center shadow-[0_15px_30px_rgba(217,70,239,0.3)] active:scale-95 transition-all">
-                    בואי נתחיל לעבוד
+                <!-- שלוש הדרכים להמשיך. הקישורים מוזרקים מ-assets/constants.js -->
+                <a href="#" data-buy-guide
+                   style="background-color:#FF0090; text-decoration:none; display:block;"
+                   class="w-full py-6 rounded-full text-white font-black text-2xl text-center shadow-[0_15px_30px_rgba(255,0,144,0.3)] active:scale-95 transition-all">
+                    המדריך התפעולי המלא
+                </a>
+                <a href="free-guide.html"
+                   style="background-color:#1A0B2E; text-decoration:none; display:block;"
+                   class="w-full py-5 rounded-full text-white font-black text-xl text-center shadow-[0_10px_24px_rgba(26,11,46,0.3)] active:scale-95 transition-all">
+                    המדריך החינמי
                 </a>
                 <a href="games.html"
-                   style="background-color:#7b2d8b; text-decoration:none; display:block;"
-                   class="w-full py-5 rounded-full text-white font-black text-xl text-center shadow-[0_10px_24px_rgba(123,45,139,0.3)] active:scale-95 transition-all">
-                    🎲 למשחקי החיבור
+                   style="background-color:#A06BFF; text-decoration:none; display:block;"
+                   class="w-full py-5 rounded-full text-white font-black text-xl text-center shadow-[0_10px_24px_rgba(160,107,255,0.3)] active:scale-95 transition-all">
+                    משחקי החיבור
                 </a>
             </div>
         </div>
@@ -155,5 +160,11 @@
         function prevSlide() { if (currentIdx > 0) { currentIdx--; updateUI(); } }
         updateUI();
     </script>
+<script type="module">
+  import { waLink, LINKS, MESSAGES, buyGuideHref } from '/assets/constants.js';
+  document.querySelectorAll('[data-buy-guide]').forEach(a => a.href = buyGuideHref());
+  document.querySelectorAll('[data-whatsapp]').forEach(a => a.href = waLink(MESSAGES.help));
+  document.querySelectorAll('[data-form]').forEach(a => a.href = LINKS.form);
+</script>
 </body>
 </html>
