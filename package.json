@@ -1,0 +1,9 @@
+{
+  "name": "presentation-ardit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multibrawn · שבת חתן — אתר, מדריך חינמי ומסירת המדריך בתשלום",
+  "scripts": {
+    "test": "node tests/functions.test.js"
+  }
+}

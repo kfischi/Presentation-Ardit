@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הדף לא נמצא · Multibrawn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/brand.css">
+<style>
+  body{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px}
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r-l);
+    padding:40px 32px; max-width:460px; text-align:center; box-shadow:var(--shadow-m);
+  }
+  h1{font-size:26px; font-weight:700; margin-bottom:12px}
+  .lead{margin:0 0 26px}
+  .row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+</style>
+</head>
+<body>
+  <div class="panel">
+    <h1>הדף לא נמצא</h1>
+    <p class="lead">יכול להיות שהקישור השתנה. אפשר להתחיל מדף הבית, או לדבר איתנו.</p>
+    <div class="row">
+      <a href="/index.html" class="btn btn-primary">לדף הבית <span class="ar">←</span></a>
+      <a href="#" data-whatsapp class="btn btn-ghost">דברו איתנו</a>
+    </div>
+  </div>
+<script type="module">
+  import { waLink, MESSAGES } from '/assets/constants.js';
+  document.querySelectorAll('[data-whatsapp]').forEach(a => a.href = waLink(MESSAGES.help));
+</script>
+</body>
+</html>
