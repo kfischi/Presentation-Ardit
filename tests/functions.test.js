@@ -126,7 +126,7 @@ const SALE = {
   customer_name: 'דנה כהן',
   customer_email: 'dana@example.com',
   customer_phone: '052-398-3394',
-  amount: '99',
+  amount: '97',
 }
 
 const sign = (body, secret) => crypto.createHmac('sha256', secret).update(body).digest('hex')

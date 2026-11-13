@@ -15,7 +15,7 @@ export const LINKS = {
   thankYou: '/thank-you.html',
   form: 'https://bucolic-lollipop-f39cc5.netlify.app/',
 
-  // TODO(kfir): the GROW payment page for the ₪99 operational guide.
+  // TODO(kfir): the GROW payment page for the ₪97 operational guide.
   // Until this is set, buyGuide() sends people to WhatsApp instead of a dead
   // link — a customer who wants to pay always reaches a human.
   buyGuide: '',
